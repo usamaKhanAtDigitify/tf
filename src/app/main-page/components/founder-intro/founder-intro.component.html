@@ -1,0 +1,36 @@
+<div
+  class="founder-intro bg-blue"
+  [ngClass]="{
+    'card-expanded': isFounderDetailExpand == true,
+    'card-closed': isFounderDetailExpand == false
+  }"
+>
+  <i
+    class="bi bi-chevron-left text-white"
+    [ngClass]="{ 'd-none': isFounderDetailExpand == true }"
+    (click)="showIntoDetail()"
+  ></i>
+  <div
+    class="founder-description m-4"
+    [ngClass]="{ 'd-none align-': isFounderDetailExpand == false }"
+  >
+    <div class="user-img rounded-circle">
+      <img class="mt-4" src="../../assets/images/fonder-img.png" />
+    </div>
+    <div class="description-title text-white mt-3">
+      The Story of
+      <br />
+      <span class="fonder-name"> Ali Banat </span>
+    </div>
+    <div class="description-content text-white">
+      <p>Read all about our founder's story and the cause he dreamt of!</p>
+    </div>
+
+    <a class="read-story text-white text-center text-decoration-none letter-spacing-1" href="javascipt:void(0)" [routerLink]="['/ali-banat']">Read story</a>
+  </div>
+  <i
+    class="bi bi-dash text-white mr-3"
+    [ngClass]="{ 'd-none': isFounderDetailExpand == false }"
+    (click)="showIntoDetail()"
+  ></i>
+</div>

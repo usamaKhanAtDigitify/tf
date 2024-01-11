@@ -1,0 +1,271 @@
+<div
+  class="d-flex justify-content-center align-items-baseline px-2 flex-wrap payment-icon"
+>
+  <img src="assets/images/paypal-icon.png" class="me-md-5 me-2" />
+  <img src="assets/images/visa-icon.png" class="me-md-5 m-2" />
+  <img src="assets/images/mastercard-icon.png" class="me-md-5 m-2" />
+  <img src="assets/images/apple-pay-icon.png" class="me-md-5" />
+  <img src="assets/images/google-pay-icon.png" class="ms-md-0 ms-3" />
+</div>
+
+<div class="bg-light-blue d-sm-block d-none">
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-3">
+        <p class="mb-0 fw-bold letter-spacing-1">
+          <i class="bi bi-shield-check icon-bold"></i> 100% secure checkout
+        </p>
+      </div>
+      <div class="col-3">
+        <p class="mb-0 fw-bold letter-spacing-1">
+          <i class="bi bi-shield-lock icon-bold"></i> We protect your privacy
+        </p>
+      </div>
+      <div class="col-3">
+        <p class="mb-0 fw-bold letter-spacing-1">
+          <i class="bi bi-shield-check icon-bold"></i> 100% secure checkout
+        </p>
+      </div>
+      <div class="col-3">
+        <p class="mb-0 fw-bold letter-spacing-1">
+          <i class="bi bi-shield-lock icon-bold"></i> We protect your privacy
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="container my-3 d-sm-block d-none">
+  <div class="row">
+    <div class="col-lg col-6">
+      <div class="d-flex flex-column">
+        <p class="text-blue text-uppercase">About Us</p>
+        <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/ali-banat']">Ali Banat Story</a>
+        <p class="text-blue fw-bold mb-1">Our Purpose</p>
+        <p class="text-blue fw-bold mb-1">Meet the team</p>
+        <p class="text-blue fw-bold mb-1">Our Social Channels</p>
+      </div>
+    </div>
+    <div class="col-lg col-6">
+      <div class="d-flex flex-column">
+        <p class="text-blue text-uppercase">Resources</p>
+        <p class="text-blue fw-bold mb-1">Annual Reports</p>
+        <p class="text-blue fw-bold mb-1">Impact Reports</p>
+        <p class="text-blue fw-bold mb-1">Volunteer packs</p>
+        <p class="text-blue fw-bold mb-1">Blog</p>
+        <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/faqs']">FAQs</a>
+      </div>
+    </div>
+    <div class="col-lg col-6">
+      <div class="d-flex flex-column">
+        <p class="text-blue text-uppercase">Legal</p>
+        <p class="text-blue fw-bold mb-1">GDPR</p>
+        <p class="text-blue fw-bold mb-1">Term of use</p>
+        <p class="text-blue fw-bold mb-1">Policies</p>
+        <p class="text-blue fw-bold mb-1">Opt out</p>
+      </div>
+    </div>
+    <div class="col-lg col-6">
+      <div class="d-flex flex-column" *ngIf="bankData">
+          <p class="text-blue text-uppercase fw-normal">Our Bank Details</p>
+          <small class="text-blue mb-2 fw-bold">{{bankData.name}}</small>
+          <small class="text-blue mb-2 fw-bold">
+            Account-{{bankData.account}}
+            <br class="mb-0" />
+            Sort code: {{bankData.code}}
+            <br class="mb-0" />
+            SWIFT: {{bankData.swift}}
+          </small>
+          <small class="text-blue w-100 fw-bold">
+            {{bankData.text}}
+          </small>
+      </div>
+      <div class="d-flex flex-column" *ngIf="!bankData">
+        <p class="text-blue text-uppercase fw-normal">Our Bank Details</p>
+        <small class="text-blue mb-2 fw-bold">Barclays Bank</small>
+        <small class="text-blue mb-2 fw-bold">
+          Account-00887776
+          <br class="mb-0" />
+          Sort code: 21-23-44
+          <br class="mb-0" />
+          SWIFT: ABS234834003434
+        </small>
+        <small class="text-blue w-100 fw-bold">
+          Four our account details in other countries, please check our FAQs or
+          contact us.
+        </small>
+
+    </div>
+    </div>
+    <div class="col-lg col-12">
+      <div class="">
+        <div class="d-flex">
+          <img src="assets/images/blue-logo.png" />
+          <div class="d-flex flex-column justify-content-end">
+            <p class="fw-bold text-ligt-blue text-uppercase mb-0">
+              matw-project
+            </p>
+            <small class="text-ligt-blue w-75">
+              Muslims Around the World Project
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <small class="text-blue fw-bold text-center mt-5"
+      >MATW INTERNATIONAL LTD with ABN 6061066325 is a Charity and Public
+      Benevolence Institution (PBI) dedicated to assisting the needy in
+      Australia and abroad.
+    </small>
+    <small class="text-blue fw-bold text-center"
+      >MATW INTERNATIONAL LTD is endorsed as a Deductible Gift Recipient (DGR).
+      Address: Level 2 47 Rickard Road, Bankstown, NSW 2200 Australia 2016 -
+      2023 MATW Project</small
+    >
+  </div>
+</div>
+<div class="container my-3 d-sm-none d-block">
+  <div class="accordion accordion-flush p-0" id="accordionFlushExample">
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne"
+          aria-expanded="false"
+          aria-controls="flush-collapseOne"
+        >
+          About Us
+        </button>
+      </p>
+      <div
+        id="flush-collapseOne"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/ali-banat']">Ali Banat Story</a>
+          <p class="text-blue fw-bold mb-1">Our Purpose</p>
+          <p class="text-blue fw-bold mb-1">Meet the team</p>
+          <p class="text-blue fw-bold mb-1">Our Social Channels</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseTwo"
+          aria-expanded="false"
+          aria-controls="flush-collapseTwo"
+        >
+          Legal
+        </button>
+      </p>
+      <div
+        id="flush-collapseTwo"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <p class="text-blue fw-bold mb-1">GDPR</p>
+          <p class="text-blue fw-bold mb-1">Term of use</p>
+          <p class="text-blue fw-bold mb-1">Policies</p>
+          <p class="text-blue fw-bold mb-1">Opt out</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseThree"
+          aria-expanded="false"
+          aria-controls="flush-collapseThree"
+        >
+          Resources
+        </button>
+      </p>
+      <div
+        id="flush-collapseThree"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <p class="text-blue fw-bold mb-1">Annual Reports</p>
+          <p class="text-blue fw-bold mb-1">Impact Reports</p>
+          <p class="text-blue fw-bold mb-1">Volunteer packs</p>
+          <p class="text-blue fw-bold mb-1">Blog</p>
+          <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/faqs']">FAQs</a>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseFour"
+          aria-expanded="false"
+          aria-controls="flush-collapseFour"
+        >
+          Bank Details
+        </button>
+      </p>
+      <div
+        id="flush-collapseFour"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body fw-bold" *ngIf="!bankData">
+          <small class="text-blue mb-2">Barclays Bank</small>
+          <small class="text-blue mb-2">
+            Account-00887776
+            <br class="mb-0" />
+            Sort code: 21-23-44
+            <br class="mb-0" />
+            SWIFT: ABS234834003434
+          </small>
+          <small class="text-blue w-100">
+            Four our account details in other countries, please check our FAQs
+            or contact us.
+          </small>
+        </div>
+        <div class="accordion-body fw-bold" *ngIf="bankData">
+          <small class="text-blue mb-2">{{bankData.name}}</small>
+          <small class="text-blue mb-2">
+            Account-{{bankData.account}}
+            <br class="mb-0" />
+            Sort code: {{bankData.code}}
+            <br class="mb-0" />
+            SWIFT: {{bankData.swift}}
+          </small>
+          <small class="text-blue w-100">
+            {{bankData.text}}
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img src="assets/images/dark-blue-logo.png" class="d-flex m-auto my-3" />
+
+  <div class="row">
+    <small class="text-blue fw-bold text-center company-info"
+      >MATW INTERNATIONAL LTD with ABN 6061066325 is a Charity and Public
+      Benevolence Institution (PBI) dedicated to assisting the needy in
+      Australia and abroad. MATW INTERNATIONAL LTD is endorsed as a Deductible
+      Gift Recipient (DGR). Address: Level 2 47 Rickard Road, Bankstown, NSW
+      2200 Australia 2016 - 2023 MATW Project</small
+    >
+  </div>
+</div>

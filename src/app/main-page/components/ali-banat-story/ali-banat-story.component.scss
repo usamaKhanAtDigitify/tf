@@ -1,0 +1,23 @@
+.story {
+  background: linear-gradient(to right, #00aeef 45%, #ffffff 0%);
+}
+
+
+
+p.decription {
+  font-size: 20px;
+  color: #1e3271;
+}
+.mt {
+  margin-top: 6rem;
+}
+
+img {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .story {
+    background: linear-gradient(to bottom, #00aeef 40%, #ffffff 0%);
+  }
+}

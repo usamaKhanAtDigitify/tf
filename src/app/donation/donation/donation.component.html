@@ -1,0 +1,239 @@
+  <p
+    class="text-blue fw-bold d-flex justify-content-center description letter-spacing-1 mb-2"
+  >
+    Frequency of this donation
+  </p>
+  <div class="d-flex justify-content-between flex-wrap mb-3">
+    <button
+      type="button"
+      [ngClass]="{
+        'bg-red': selectedFrequncy == 'one_time',
+      }"
+      class="bg-blue text-white fw-bold letter-spacing-1 rounded-pill border-0 me-3 mt-2"
+      (click)="onSelectFrequency('one_time')"
+    >
+      One Time
+    </button>
+    <button
+      type="button"
+      [ngClass]="{
+        'bg-red': selectedFrequncy == 'week',
+      }"
+      class="bg-blue text-white fw-bold letter-spacing-1 rounded-pill border-0 me-3 mt-2"
+      (click)="onSelectFrequency('week')"
+    >
+      Weekly
+    </button>
+    <button
+      type="button"
+      [ngClass]="{
+        'bg-red': selectedFrequncy == 'month',
+      }"
+      class="bg-blue text-white fw-bold letter-spacing-1 rounded-pill border-0 me-3 mt-2"
+      (click)="onSelectFrequency('month')"
+    >
+      Monthly
+    </button>
+    <button
+      type="button"
+      [ngClass]="{
+        'bg-red': selectedFrequncy == 'year',
+      }"
+      class="bg-blue text-white fw-bold letter-spacing-1 rounded-pill border-0 me-3 mt-2"
+      (click)="onSelectFrequency('year')"
+    >
+      Annually
+    </button>
+  </div>
+  <small class="text-blue fw-bold letter-spacing-1 my-2"
+    >*Note:
+    {{ selectedFrequncyNote }}
+    <span *ngIf="selectedFrequncy !== 'one_time'">
+      &nbsp;you can <span class="text-red">cancel</span> anytime.</span
+    >
+  </small>
+
+<div class="product-basket-section my-3 ">
+  <p
+    class="text-blue fw-bold d-flex justify-content-center mb-0 description letter-spacing-1"
+  >
+    Current Basket
+  </p>
+  <div class="d-flex flex-wrap px-sm-0 px-sm-5">
+    <div
+      class="product d-flex flex-column mt-4 me-4"
+      *ngFor="let product of products; index as i"
+    >
+    <div class="d-flex">
+      <div class="product-image image position-relative">
+        <img src="{{product.attributes.image.data.attributes.url}}"  class="w-100 rounded-2"/>
+        <i
+          class="bi bi-trash-fill delete-icon text-blue rounded-pill bg-secondary-subtle px-1 pt-1 position-absolute top-0 start-100 translate-middle"
+          (click)="deleteProduct(product.id, i)"
+        ></i>
+      </div>
+      <div class="d-flex flex-column ms-3">
+        <p
+          class="product-title description fw-bold text-blue letter-spacing-1 mb-1"
+        >
+          {{ product.attributes.title }}
+        </p>
+        <div
+          class="product-price d-flex align-items-baseline"
+          *ngIf="!product.attributes.fixedPrice"
+        >
+          <i
+            class="bi bi-dash-circle text-blue rounded-pill bg-secondary-subtle"
+            (click)="decreaseAmountByOne(product.id, i)"
+          ></i>
+          <input
+            type="text"
+            [ngModel]="product.attributes.amountWithSymbol"
+            (ngModelChange)="onChangeAmount($event, product.id, i)"
+            class="fw-bold text-blue letter-spacing-1 border border-2 rounded-3 mx-2"
+            size="7"
+          />
+          <i
+            class="bi bi-plus-circle text-blue rounded-pill bg-secondary-subtle"
+            (click)="increaseAmountByOne(product.id, i)"
+          ></i>
+        </div>
+        <div
+          class="product-price d-flex align-items-baseline"
+          *ngIf="product.attributes.fixedPrice"
+        >
+          <i
+            class="bi bi-dash-circle text-blue rounded-pill bg-secondary-subtle"
+            (click)="decreaseQuantityByOne(product.id, i)"
+          ></i>
+          <span class="fw-bold text-blue letter-spacing-1 mx-1">
+            Qty
+            <span class="border border-2 rounded-3 px-3 py-1">{{
+              product.attributes?.quantity
+            }}</span>
+          </span>
+          <i
+            class="bi bi-plus-circle text-blue rounded-pill bg-secondary-subtle"
+            (click)="increaseQuantityByOne(product.id, i)"
+          ></i>
+
+          <p
+            class="ms-2 product-title description fw-bold text-blue letter-spacing-1"
+            *ngIf="product.attributes.fixedPrice"
+          >
+          {{ currencySymbol + product.attributes.donatedAmount }}
+          </p>
+        </div>
+      </div>
+    </div>
+      <div class="d-sm-none d-block mt-3">
+        <div class="d-flex justify-content-between">
+          <p class="description text-blue fw-bold me-2 mb-0">Donation on behalf of</p>
+          <input
+            type="text"
+            [(ngModel)]="product.attributes.donationOnBehalf"
+            class="text-blue fw-bold border border-2 rounded-3 py-2 ps-2"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="border-solid text-red description fw-bold letter-spacing-1 bg-white rounded-pill border-red border-2 mt-4"
+    [routerLink]="['/']"
+  >
+    Add More
+  </button>
+</div>
+
+<div class="product-listing my-3 py-3 m-auto border-top border-bottom border-1 d-sm-block d-none">
+  <div
+    class="row align-items-baseline"
+    *ngFor="let product of selectdProducts; index as i"
+  >
+    <div class="col-5 p-0">
+      <p class="description text-blue fw-bold letter-spacing-1">
+        {{ product.attributes.title }}
+      </p>
+    </div>
+    <div class="col-2">
+      <p class="description text-blue fw-bold">
+        {{
+          currencySymbol +  roundNumberHandler(product.attributes.fixedPrice ? (product.attributes.donatedAmount) : product.attributes.donatedAmount)
+}}
+      </p>
+    </div>
+    <div class="col-5 p-0">
+      <div class="d-flex align-items-baseline justify-content-between">
+        <p class="description text-blue fw-bold me-0">Donation on behalf of</p>
+        <input
+          type="text"
+          [(ngModel)]="product.attributes.donationOnBehalf"
+          class="text-blue fw-bold border border-2 rounded-3 py-2 ps-2"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-baseline">
+    <div class="col-5">
+      <h4 class="text-blue fw-bold letter-spacing-1">Total</h4>
+    </div>
+    <div class="col-2">
+      <h4 class="text-blue fw-bold letter-spacing-1">
+        {{currencySymbol + roundNumberHandler(totalPrice) }}
+      </h4>
+    </div>
+  </div>
+</div>
+
+
+<div class="addons-listing my-3 py-3 border-bottom border-1 m-auto ">
+  <p class="description text-blue fw-bold d-flex justify-content-sm-start justify-content-center letter-spacing-1 mb-2">
+    You might want to add
+  </p>
+  <div class="d-flex flex-wrap justify-content-between px-sm-0 px-sm-5 px-2">
+    <div
+      class="product bg-light-white d-flex mt-4 position-relative p-3 pb-0"
+      *ngFor="let product of addOnsProduct; index as i"
+    >
+      <!-- <i class="bi bi-trash-fill delete-icon text-blue rounded-pill bg-secondary-subtle px-1 pt-1 position-absolute top-0 start-0 translate-middle" (click)="deleteProduct(product.id)"></i> -->
+      <div class="form-check position-absolute top-0 start-0 translate-middle">
+        <input
+          class="form-check-input bg-red border-0"
+          type="checkbox"
+          [ngModel]="product?.attributes?.checked"
+          (change)="onAddonSelect($event, i)"
+        />
+      </div>
+
+      <div class="image">
+        <img src="{{product.attributes.image.data.attributes.url}}" class="w-100 rounded-2"  />
+      </div>
+      <div class="d-flex flex-column ms-3">
+        <p
+          class="product-title description fw-bold text-blue letter-spacing-1 mb-1"
+        >
+          {{ product.attributes.title }}
+        </p>
+        <p class="product-price description fw-bold text-blue letter-spacing-1">
+          {{currencySymbol +  roundNumberHandler(product.attributes.amount * this.rateAmount)}}
+        </p>
+      </div>
+    </div>
+    <div class="d-flex flex-sm-column flex-row justify-content-between pt-3 total-addons">
+      <p class="description text-blue fw-bold d-flex letter-spacing-1 mb-0">
+        Total add ons: {{currencySymbol + roundNumberHandler(addonsTotalPrice)}}
+      </p>
+      <button
+        type="button"
+        class="border-solid text-red description fw-bold letter-spacing-1 bg-white rounded-pill border-red border-2"
+        (click)="addAddonsInBasket()"
+      >
+        Add to basket
+      </button>
+    </div>
+  </div>
+</div>

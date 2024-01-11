@@ -1,0 +1,319 @@
+<div *ngIf="!showDarkBlueSection">
+    <div
+  class="quick-donation top-not-fixed p-3 p-small bg-blue"
+  #donationSectionOnMobile
+>
+  <div class="card m-auto rounded-3 border border-1 border-navy p-0">
+    <div class="d-flex bg-blue">
+      <button
+        type="button"
+        class="btn fw-bold letter-spacing-1 text-uppercase rounded-0 rounded-top-left flex-grow-1"
+        [ngClass]="{
+          'bg-navy text-white': donationPeriod == 'once',
+          'text-blue bg-white': donationPeriod != 'once'
+        }"
+        (click)="onSelectDonationPeriod('once')"
+      >
+        Give Once
+      </button>
+      <button
+        type="button"
+        class="btn fw-bold letter-spacing-1 text-uppercase rounded-0 rounded-top-right flex-grow-1"
+        [ngClass]="{
+          'bg-navy text-white': donationPeriod == 'monthly',
+          'text-blue bg-white': donationPeriod != 'monthly'
+        }"
+        (click)="onSelectDonationPeriod('monthly')"
+      >
+        Monthly
+      </button>
+    </div>
+    <div
+      class="fw-bold bg-blue letter-spacing-1 border-navy text-white text-center border-top border-bottom"
+    >
+      <p class="my-2">
+        {{
+          donationPeriod == "once"
+            ? "Choose an amount to give once."
+            : "Choose an amount to give per month."
+        }}
+      </p>
+    </div>
+    <div
+      class="quick-donation-form d-flex flex-column px-5 py-2 bg-white rounded-bottom-right rounded-bottom-left"
+    >
+      <div class="d-flex justify-content-between">
+        <div
+          class="amount-btn border border-navy border-1 rounded-1 text-white d-flex align-items-center justify-content-center"
+          [ngClass]="{ 'bg-navy text-white': selectedAmount === '25' }"
+          (click)="onSelectAmount('25')"
+        >
+          &pound; 25
+        </div>
+        <div
+          class="amount-btn border border-navy border-1 rounded-1 text-white d-flex align-items-center justify-content-center"
+          [ngClass]="{ 'bg-navy text-white': selectedAmount === '50' }"
+          (click)="onSelectAmount('50')"
+        >
+          &pound; 50
+        </div>
+        <div
+          class="amount-btn border border-navy border-1 rounded-1 text-white d-flex align-items-center justify-content-center"
+          [ngClass]="{ 'bg-navy text-white': selectedAmount === '100' }"
+          (click)="onSelectAmount('100')"
+        >
+          &pound; 100
+        </div>
+        <div
+          class="amount-btn border border-navy border-1 rounded-1 text-white d-flex justify-content-center align-items-center text-uppercase letter-spacing-1"
+          [ngClass]="{ 'bg-navy text-white': selectedAmount === 'other' }"
+          (click)="onSelectAmount('other')"
+        >
+          Other
+        </div>
+      </div>
+      <div class="d-flex justify-content-between mt-2">
+        <select
+          class="bg-white text-blue border-navy border flex-grow-1 me-3 rounded-1"
+          aria-label="Default select example"
+        >
+          <option selected>Where needed most</option>
+        </select>
+        <select
+          class="bg-white text-blue border-navy border rounded-1"
+          aria-label="Default select example"
+        >
+          <i class="bi bi-chevron-down"> </i>
+          <option selected>&pound; GBP</option>
+        </select>
+      </div>
+      <div class="d-flex mt-2">
+        <button
+          type="button"
+          class="btn text-white text-center rounded-pill w-100 letter-spacing-1 bg-red text-capitalize my-sm-1"
+        >
+          quick donate
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<section
+  class="quick-donation top bg-blue"
+  (scroll)="onScroll()"
+  #quickDonationSection
+  [ngClass]="{ fixedSection: isQuickDonationFixed }"
+>
+  <div
+    class="max-witdh-94 m-auto justify-content-center d-flex align-items-center flex-wrap m-auto"
+  >
+    <div class="progress-analytic text-center my-sm-2 ms-4">
+      <p class="text-white mb-0">Our billion target</p>
+      <div>
+        <div
+          class="progress bg-dark-blue rounded-0 my-1"
+          role="progressbar"
+          aria-label="Basic example"
+          aria-valuenow="25"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div class="progress-bar" style="width: 25%"></div>
+        </div>
+      </div>
+      <p class="text-white mb-0">96,625,262 People Fed</p>
+    </div>
+    <div
+      class="quick-donation-form d-flex justify-content-around flex-grow-1 flex-wrap my-sm-1"
+    >
+      <div class="d-flex align-items-center flex-wrap justify-content-center">
+        <p class="text-white mb-0 mx-2 letter-spacing-1">Choose the amount</p>
+        <div
+          class="amount-btn border border-white border-1 rounded-1 text-white d-flex align-items-center justify-content-center fw-bold"
+          [ngClass]="{ selected: selectedAmount === '25' }"
+          (click)="onSelectAmount('25')"
+        >
+          &pound; 25
+        </div>
+        <div
+          class="amount-btn mx-2 border border-white border-1 rounded-1 text-white d-flex align-items-center justify-content-center fw-bold"
+          [ngClass]="{ selected: selectedAmount === '50' }"
+          (click)="onSelectAmount('50')"
+        >
+          &pound; 50
+        </div>
+        <div
+          class="amount-btn mx-2 border border-white border-1 rounded-1 text-white d-flex align-items-center justify-content-center fw-bold"
+          [ngClass]="{ selected: selectedAmount === '100' }"
+          (click)="onSelectAmount('100')"
+        >
+          &pound; 100
+        </div>
+        <div
+          class="amount-btn mx-2 border border-white border-1 rounded-1 text-white d-flex justify-content-center align-items-center text-uppercase letter-spacing-1"
+          [ngClass]="{ selected: selectedAmount === 'other' }"
+          (click)="onSelectAmount('other')"
+        >
+          Other
+        </div>
+        <div
+          class="d-flex justify-content-center align-items-center text-white my-sm-1"
+        >
+          <p class="mb-0 mx-2 letter-spacing-1">Choose the cause</p>
+
+          <select
+            class="custom-select-box bg-dark-blue text-white border-0 rounded-1 px-3 pe-5"
+            aria-label="Default select example"
+          >
+            <i class="bi bi-chevron-down"> </i>
+            <option selected>Where needed most</option>
+          </select>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="btn text-white text-center rounded-pill bg-red text-capitalize my-sm-1"
+      >
+        quick donate
+      </button>
+    </div>
+  </div>
+</section>
+
+<section
+  class="quick-donation bottom bg-blue p-2 pb-0"
+  (scroll)="onScroll()"
+  #quickDonationMobileSection
+  *ngIf="isQuickDonationFixed"
+  [ngClass]="{ fixedSection: isQuickDonationFixed }"
+>
+  <div
+    class="quick-donation-form my-sm-1 d-flex justify-content-center text-center"
+  >
+    <div class="row flex-wrap justify-content-center">
+      <div class="col-2 px-1">
+        <select
+          class="text-blue border-0 rounded-1 mb-2 w-100"
+          aria-label="Default select example"
+        >
+          <i class="bi bi-chevron-down"> </i>
+          <option>&pound;</option>
+          <option>&dollar;</option>
+          <option>&euro;</option>
+        </select>
+      </div>
+
+      <div class="col-3 px-1">
+        <select
+          class="text-blue border-0 rounded-1 w-100"
+          aria-label="Default select example"
+        >
+          <i class="bi bi-chevron-down"> </i>
+          <option>25</option>
+          <option>50</option>
+          <option>75</option>
+          <option>100</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="col-4 px-1">
+        <select
+          class="text-blue border-0 rounded-1 text-left w-100"
+          aria-label="Default select example"
+        >
+          <i class="bi bi-chevron-down"> </i>
+          <option>Palestine</option>
+          <option>Yemen</option>
+        </select>
+      </div>
+      <div class="col-3 custom-col">
+        <button
+          type="button"
+          class="btn text-white text-center rounded-pill bg-red text-capitalize px-3 mt-1"
+        >
+          donate
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</div>
+
+<div *ngIf="showDarkBlueSection">
+    <section
+  class="quick-donation bg-navy"
+>
+  <div
+    class="max-width-1440 d-flex align-items-center flex-column m-auto"
+  >
+  <p class="font-gotcha text-white main-title mb-0">Emergency Appeals</p>
+  <p class="text-white mb-1 letter-spacing-1  description">Choose the amount</p> 
+    <div
+      class="quick-donation-form d-flex align-items-center flex-wrap justify-content-center"
+    >
+        <div
+          class="amount-btn me-3 border border-white border-1 rounded-1 text-white d-flex align-items-center justify-content-center fw-bold"
+          [ngClass]="{ selected: selectedAmount === '25', 'dark-blue-section': showDarkBlueSection}"
+          (click)="onSelectAmount('25')"
+        >
+          &pound; 25
+        </div>
+        <div
+          class="amount-btn me-3 border border-white border-1 rounded-1 text-white d-flex align-items-center justify-content-center fw-bold"
+          [ngClass]="{ selected: selectedAmount === '50', 'dark-blue-section': showDarkBlueSection }"
+          (click)="onSelectAmount('50')"
+        >
+          &pound; 50
+        </div>
+        <div
+          class="amount-btn me-3 border border-white border-1 rounded-1 text-white d-flex align-items-center justify-content-center fw-bold"
+          [ngClass]="{ selected: selectedAmount === '100', 'dark-blue-section': showDarkBlueSection }"
+          (click)="onSelectAmount('100')"
+        >
+          &pound; 100
+        </div>
+        <div
+          class="amount-btn border border-white border-1 rounded-1 text-white d-flex justify-content-center align-items-center text-uppercase letter-spacing-1"
+          [ngClass]="{ selected: selectedAmount === 'other', 'dark-blue-section': showDarkBlueSection }"
+          (click)="onSelectAmount('other')"
+        >
+          Other
+        </div>
+        <!-- <div
+          class="d-flex justify-content-center align-items-center text-white my-sm-1"
+        >
+          <p class="mb-0 mx-2 letter-spacing-1">Choose the cause</p>
+
+          <select
+            class="custom-select-box bg-dark-blue text-white border-0 rounded-1 px-3 pe-5"
+            aria-label="Default select example"
+          >
+            <i class="bi bi-chevron-down"> </i>
+            <option selected>where needed most</option>
+          </select>
+        </div> -->
+    </div>
+    <button
+    type="button"
+    class="btn description text-white text-center rounded-pill bg-red text-capitalize letter-spacing-1 my-3 px-4 py-2"
+  >
+    quick donate
+  </button>
+  </div>
+
+  <div
+  class="d-flex justify-content-center align-items-baseline px-2 flex-wrap payment-icon d-none"
+>
+  <img src="assets/images/paypal-icon.png" class="me-md-5 me-2" />
+  <img src="assets/images/visa-icon.png" class="me-md-5 m-2" />
+  <img src="assets/images/mastercard-icon.png" class="me-md-5 m-2" />
+  <img src="assets/images/apple-pay-icon.png" class="me-md-5" />
+  <img src="assets/images/google-pay-icon.png" class="ms-md-0 ms-3" />
+</div>
+</section>
+
+</div>

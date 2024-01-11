@@ -1,0 +1,44 @@
+.ticket-detail{
+    background-image: url('/assets/images/event-form-bg-img.png');
+    background-origin: padding-box;
+    background-repeat: no-repeat;
+    background-position: 100% 0%;
+
+
+    .form-title{
+    font-size: 30px;
+    }
+
+    .form-title-2{
+        font-size: 25px;
+    }
+
+    // .form-select, .form-control{
+    //     width: 327px;
+    // }
+
+    .ticket-price {
+        i {
+          cursor: pointer;
+            height: 16px;
+            line-height: 0px;
+        }
+      }
+}
+
+
+@media screen and (max-width: 575px) {
+    .ticket-detail{
+        background-image: none;
+        background: rgba(232, 237, 249, 1);
+    }    
+  }
+
+  @media screen and (max-width: 385px) {
+    .price-detail{
+       p{
+        font-size: 12px;
+       }
+    }    
+  }
+

@@ -1,0 +1,68 @@
+
+
+
+
+
+  <img src="assets/images/blue-text.png" class="d-flex m-auto my-3" />
+  <div class="stepper-form container-md border border-1 rounded-2 py-3 mb-5">
+    <div
+      class="navigation-steps my-3 fw-bold letter-spacing-1 description d-flex justify-content-center"
+    >
+      <div class="navigation-step" *ngFor="let step of formSteps">
+        <span
+          [ngClass]="{
+            'text-blue':
+              isCurrentStepCompleted === true && step.stepNumber === activeStep,
+            'text-red':
+              isCurrentStepCompleted === false && step.stepNumber === activeStep
+          }"
+          >{{ step.title }}</span
+        >
+        <i
+          class="bi bi-check-circle-fill"
+          *ngIf="step.stepNumber !== 2"
+          [ngClass]="{
+            'text-blue':
+              isCurrentStepCompleted === true && step.stepNumber === activeStep,
+            'text-red':
+              isCurrentStepCompleted === false && step.stepNumber === activeStep
+          }"
+        ></i>
+      </div>
+    </div>
+  
+    <div
+      class="form-step m-auto"
+      *ngFor="let step of formSteps"
+      [ngClass]="{
+        moveLeft: step.moveFormLeft === true,
+        moveRight: step.moveFormRight == true,
+        'show-form': activeStep === step.stepNumber
+      }"
+    >
+      <app-donation
+        (readyToMove)="moveRight($event)"
+        *ngIf="step.stepNumber == 0"
+      ></app-donation>
+      <app-payment-form *ngIf="step.stepNumber == 1" (readyToMove)="moveRight($event)"></app-payment-form>
+    </div>
+  
+    <div class="d-flex justify-content-center mt-3">
+      <button
+        type="button"
+        class="border-solid text-red description fw-bold letter-spacing-1 bg-white rounded-pill border-red border-2 mt-2 py-1 px-5"
+        (click)="moveLeft()"
+      >
+        Back
+      </button>
+      <button
+        type="button"
+        *ngIf="activeStep == 0"
+        class="border-solid description fw-bold bg-red text-white letter-spacing-1 rounded-pill border-0 ms-3 mt-2 py-1 px-5"
+        (click)="tempMoveRight()"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+  

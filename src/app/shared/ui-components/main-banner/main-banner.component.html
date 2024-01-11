@@ -1,0 +1,50 @@
+<div class="walkthrough show reveal" [ngClass]="{'height-80': bannerObject.page == 'storypage' || 'aboutpage', 'height-40 bg-navy align-items-center justify-content-center' : bannerObject.page == 'contact'}">
+  <div class="walkthrough-body">
+    <div class="text-white font-gotcha contact-banner mt-5" *ngIf="bannerObject.page == 'contact'">
+      <p>We'd love to hear from you!</p>
+    </div>
+    <ul class="screens animate">
+      <li
+        class="screen"
+        *ngFor="let banner of bannerObject.data; index as i"
+        [ngClass]="{ active: index === i }"
+      >
+        <div class="media" *ngIf="bannerObject.page == 'mainpage'">
+          <img
+            class="object-fit-fill"
+            src="{{
+                banner.attributes.media.data.attributes.url
+            }}"
+          />
+          <div class="content">
+            <p class="m-0">{{ banner.attributes.tittle }}</p>
+            <p class="">{{ banner.attributes.tagline }}</p>
+            <a class="btn btn-lg text-white text-center rounded-pill">{{
+              banner.attributes.buttonText
+            }}</a>
+          </div>
+        </div>
+        
+        <div class='media' *ngIf="bannerObject.page == 'storypage' || 'aboutpage'">
+          <iframe src="https://youtube.com/embed/dzL6BLPAFBo?autoplay=0" >
+          </iframe>
+          <!-- <video #videoRef>
+            <source src="{{banner}}" type="video/mp4">
+            Your browser does not support HTML video.
+          </video> -->
+          <!-- <div class="play-btn px-3">
+            <a href="#"  (click)="playVideo(videoRef)"><i class="bi " [className]="videoRef.paused ? mediaPlyaerBtnIcon : mediaPlyaerBtnIcon"></i></a>
+          </div> -->
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="walkthrough-pagination" *ngIf="bannerObject.page == 'mainpage'">
+    <a
+      class="dot"
+      *ngFor="let banner of bannerObject.data; index as i"
+      [ngClass]="{ active: index === i }"
+      (click)="showSlidder(i)"
+    ></a>
+  </div>
+</div>

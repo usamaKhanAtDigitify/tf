@@ -1,0 +1,119 @@
+<div class="ticket-detail d-flex flex-column align-items-center py-4 pb-5">
+  <p class="form-title text-center text-blue letter-spacing-1 fw-bold">Book Tickets</p>
+  <form class="text-blue description mx-lg-0 mx-4" #bookTicketsForm="ngForm">
+    <div class="row">
+      <div class="col-sm col-12">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label letter-spacing-1">Select Date:</label>
+          <select class="form-select text-blue rounded-1 fw-bold" aria-label="Default select example" name="date"
+            (ngModelChange)="onChangeDates($event)" [(ngModel)]="bookTicketObj.dates">
+            <option *ngFor="let dates of eventDatesList; index as i" [ngValue]="dates">{{dates}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm col-12">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label letter-spacing-1">Select Location:</label>
+          <select class="form-select text-blue rounded-1 fw-bold" aria-label="Default select example" name="location"
+            (ngModelChange)="onChangeLocation($event)" [(ngModel)]="bookTicketObj.location">
+            <option *ngFor="let location of eventLocationList; index as i" [ngValue]="location">{{location}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <span ngModelGroup="tickets">
+      <div class="row mb-4 price-detail" *ngFor="let ticket of ticketList; index as ind">
+        <div class="col-4">
+          <p>{{ticket.type | titlecase}} Tickets</p>
+        </div>
+        <div class="col-2 text-center">
+          <p>{{ticket.cost}}</p>
+        </div>
+        <div class="col-4">
+          <div class="ticket-price d-flex justify-content-center align-items-baseline">
+            <i class="bi bi-dash-circle text-blue rounded-pill bg-secondary-subtle"
+              (click)="decreaseQuantityByOne(ticket)"></i>
+            <span class="fw-bold text-blue letter-spacing-1 mx-3">
+              <span class="border border-2 rounded-3 px-3 py-1">{{ticket.count}}</span>
+            </span>
+            <i class="bi bi-plus-circle text-blue rounded-pill bg-secondary-subtle"
+              (click)="increaseQuantityByOne(ticket)"></i>
+          </div>
+        </div>
+        <div class="col-2 text-end">
+          <p>{{ticket.total}}</p>
+        </div>
+      </div>
+    </span>
+
+    <div class="d-flex mb-4">
+      <label for="exampleFormControlInput1" class="form-label text-red letter-spacing-1 w-25">Promo Code</label>
+      <input type="text" class="form-control text-blue rounded-1 w-75" id="exampleFormControlInput1"
+        placeholder="code here">
+    </div>
+    <div class="d-flex flex-column border border-2 border-red rounded-2 p-3 mb-4">
+      <p class="form-title-2 mb-0 text-center">Add your details and request name, number and email address.</p>
+      <p class="text-center">We need this to email you your tickets and send your receipt.</p>
+      <div class="row">
+        <div class="col-sm col-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label letter-spacing-1">Name</label>
+            <input type="text" class="form-control text-blue rounded-1 " id="exampleFormControlInput1"
+              placeholder="Name" name="name" [(ngModel)]="bookTicketObj.name">
+          </div>
+        </div>
+        <div class="col-sm col-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label letter-spacing-1">Phone</label>
+            <input type="phone" class="form-control text-blue rounded-1 " id="exampleFormControlInput1"
+              placeholder="Phone" name="phone" [(ngModel)]="bookTicketObj.phone">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm col-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label letter-spacing-1">Email Address</label>
+            <input type="email" class="form-control text-blue rounded-1 " required
+              (ngModelChange)="onChangeForm('email',$event)" name="email"
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" [(ngModel)]="bookTicketObj.email"
+              #email="ngModel" [ngClass]="{
+                        'is-invalid': submitted && bookTicketsForm.controls['email'].invalid
+                      }" id="exampleFormControlInput1" placeholder="name@example.com">
+            <div class="text-red" *ngIf="email.errors?.['required']">
+              Email is required
+            </div>
+            <div *ngIf="email.touched && email.invalid">
+              <div class="text-red" *ngIf="email.errors?.['pattern']">
+                Invalid email address.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm col-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label letter-spacing-1">Confirm Email Address</label>
+            <input type="email" class="form-control text-blue rounded-1"
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required
+              (ngModelChange)="validateConfirmEmail(bookTicketsForm)" name="confirmEmail" #confirmEmail="ngModel"
+              [(ngModel)]="bookTicketObj.confirmEmail" id="exampleFormControlInput1" placeholder="name@example.com"
+              [ngClass]="{
+                        'is-invalid': submitted && bookTicketsForm.controls['confirmEmail'].invalid
+                      }">
+            <div class="text-red" *ngIf="confirmEmail.errors?.['required']">
+              Confirm Email is required.
+            </div>
+            <div *ngIf="confirmEmail.touched && confirmEmail.invalid">
+              <div class="text-red" *ngIf="confirmEmail.errors?.['pattern']">
+                Invalid email address.
+              </div>
+              <div class="text-red" *ngIf="confirmEmail.errors?.['incorrect']">
+                Email do not match.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

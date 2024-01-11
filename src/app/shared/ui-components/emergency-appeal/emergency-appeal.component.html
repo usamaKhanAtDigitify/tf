@@ -1,0 +1,216 @@
+<div class="emergency-appeals d-flex flex-column p-3 mb-sm-0 mb-5">
+  <p
+    class="text-capitalize text-blue letter-spacing-1 text-center main-title font-gotcha mb-0"
+  >
+    emergency appeals
+  </p>
+  <p class="second-title text-center text-blue letter-spacing-1 mx-3">
+    Your Support Matters Now More Than Ever!
+  </p>
+  <p
+    class="w-75 description text-center m-auto mb-4 text-blue letter-spacing-1"
+  >
+    Our brothers and sisters need your urgent support. Contribute to medical,
+    victim support, food, and water aid. Every donation, big or small,
+    transforms lives. Be the change they need. Act now.
+  </p>
+  <i id="left" class="bi bi-chevron-left" (click)="prevSlider()"></i>
+  <div class="product-slider-wrapper container-sm" *ngIf="productRateList">
+    <div class="product-slider" #slider >
+      
+      <div 
+        class="card border-3 border rounded-4 border-black"
+        *ngFor="let product of productRateList; index as i"
+
+        #product
+      >
+        <div>
+          <img
+            src="{{
+              
+                product.attributes.image.data.attributes.url
+            }}"
+            class="card-img-top"
+            alt="..."
+          />
+          <a
+            href="javascript:void(0)"
+            class="position-absolute top-0 start-0 ms-2 text-white pe-auto"
+            (click)="addToBasket(product)"
+            >Add to cart</a
+          >
+          <p class="text-decoration-underline letter-spacing-1 position-absolute top-0 end-0 text-white me-2 ">{{ product?.attributes?.countries?.data[0]?.attributes?.title}}</p>
+          
+        </div>
+        <div class="card-body text-blue p-0">
+          <p class="card-text bg-blue text-white px-3 mb-1">
+            {{ product.attributes?.categories?.data[0]?.attributes?.title }}
+          </p>
+          <p class="fw-bold text-capitalize mb-0 letter-spacing-1 px-3 mb-1">
+            {{ product.attributes.title }}
+          </p>
+          <div class="product-description position-relative">
+            <p class=" px-3 letter-spacing-1">
+              {{ product.attributes.description }}
+            </p>
+            <button type="button" class="bg-white border-0 position-absolute top-100 start-50 translate-middle fw-bold letter-spacing-1 text-red mt-3" data-bs-toggle="modal" data-bs-target="#productDeatilModal" (click)="showProductDetail(product)">View more</button>
+          </div>
+          <div class="px-3 d-flex">
+            <p class="mb-0">
+              <i class="bi bi-people"></i> {{ product.attributes.count }}
+            </p>
+            <p class="mx-3 mb-0">
+              <i class="bi bi-hourglass"></i>
+              {{ calculateDaysLeft(product.attributes.end) }} days left
+            </p>
+          </div>
+          <div class="mx-3 product-progress">
+            <div
+              class="progress bg-success-subtle rounded-1"
+              role="progressbar"
+              aria-label="Basic example"
+              [attr.aria-valuenow]="
+                (product.attributes.donated / product.attributes.target) * 100
+              "
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div
+                class="progress-bar"
+                [ngStyle]="{
+                  width:
+                    (product.attributes.donated / product.attributes.target) *
+                      100 +
+                    '%'
+                }"
+              ></div>
+            </div>
+          </div>
+          <div class="m-3 d-flex justify-content-between align-items-center">
+            <div class="amount-funded d-flex flex-column">
+              <p class="mb-0">
+                <span class="fw-bold"
+                  >{{currencySymbol}} {{ product.attributes.donated }}</span
+                >
+                raised
+              </p>
+              <p class="mb-0">total {{currencySymbol}} {{ product.attributes.target }}</p>
+            </div>
+            <button
+              class="bg-red text-white w-auto h-100 rounded-pill border-0 py-1 px-2"
+              [routerLink]="['/donation']"
+              (click)="addToBasket(product)"
+            >
+              Donate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <i id="right" class="bi bi-chevron-right" (click)="nextSlider()"></i>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="productDeatilModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content emergency-appeals " *ngIf="productDetail">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold letter-spacing-1" id="detailModalLabel"> {{ productDetail.attributes.label }} </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0">
+        <div
+        class="card text-blue m-0 border-0 rounded-0 w-100"
+      >
+        <div>
+          <img
+            src="{{
+            
+                productDetail.attributes.image.data.attributes.url
+            }}"
+            class="card-img-top rounded-0"
+            alt="..."
+          />
+          <a
+            href="javascript:void(0)"
+            class="position-absolute top-0 start-0 ms-2 text-white pe-auto"
+            (click)="addToBasket(productDetail)"
+            >Add to cart</a
+          >
+          <p class="text-decoration-underline letter-spacing-1 position-absolute top-0 end-0 text-white me-2 ">{{ productDetail.attributes.place }}</p>
+          
+        </div>
+        <div class="card-body p-0">
+          <p class="card-text bg-blue text-white px-3 mb-1">
+            {{ productDetail.attributes.label }}
+          </p>
+          <p class="fw-bold fs-5 text-capitalize mb-0 letter-spacing-1 px-3 mb-1">
+            {{ productDetail.attributes.title }}
+          </p>
+            <p class="px-3 fw-bold letter-spacing-1">
+              {{ productDetail.attributes.description }}
+            </p>
+
+          
+          <div class="px-3 d-flex">
+            <p class="mb-0">
+              <i class="bi bi-people"></i> {{ productDetail.attributes.count }}
+            </p>
+            <p class="mx-3 mb-0">
+              <i class="bi bi-hourglass"></i>
+              {{ calculateDaysLeft(productDetail.attributes.end) }} days left
+            </p>
+          </div>
+          <div class="mx-3 product-progress">
+            <div
+              class="progress bg-success-subtle rounded-1"
+              role="progressbar"
+              aria-label="Basic example"
+              [attr.aria-valuenow]="
+                (productDetail.attributes.donated / productDetail.attributes.target) * 100
+              "
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div
+                class="progress-bar"
+                [ngStyle]="{
+                  width:
+                    (productDetail.attributes.donated / productDetail.attributes.target) *
+                      100 +
+                    '%'
+                }"
+              ></div>
+            </div>
+          </div>
+          <div class="m-3 d-flex justify-content-between align-items-center">
+            <div class="amount-funded d-flex flex-column">
+              <p class="mb-0">
+                <span class="fw-bold"
+                  >&dollar;{{ productDetail.attributes.donated }}</span
+                >
+                raised
+              </p>
+              <p class="mb-0">total &dollar;{{ productDetail.attributes.target }}</p>
+            </div>
+            <button
+              class="bg-red text-white w-auto h-100 rounded-pill border-0 py-1 px-2"
+              [routerLink]="['/donation']"
+              (click)="addToBasket(productDetail)"
+              data-bs-dismiss="modal"
+            >
+              Donate
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>

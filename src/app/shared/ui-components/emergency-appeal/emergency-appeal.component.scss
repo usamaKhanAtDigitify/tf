@@ -1,0 +1,208 @@
+.emergency-appeals {
+  position: relative;
+
+  .card {
+    height: max-content;
+    max-height: 430px;
+    overflow-y: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    width: 280px;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+
+    .product-progress {
+      .progress {
+        height: 3px;
+        background-color: #ee13585b;
+
+        .progress-bar {
+          background-color: #ee135a;
+        }
+      }
+    }
+
+    .product-description{
+        max-height: 80px;
+        margin-bottom: 30px;
+      
+        p:first-child{
+        font-size: 12px;
+        height: 55px;
+        max-height: 5s5px;
+        overflow-y: hidden;
+      }
+
+      p:last-child{
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+    }
+
+    img {
+      height: 150px;
+      border-radius: 10px 10px 0px 0px;
+    }
+  }
+
+  i#left,
+  i#right {
+    top: 65%;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    font-size: 2.25rem;
+    position: absolute;
+    text-align: center;
+    line-height: 50px;
+    // background: #fff;
+    //border-radius: 50%;
+    // box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+    transform: translateY(-50%);
+    transition: transform 0.1s linear;
+    z-index: 1;
+  }
+  i#left:active,
+  i#right:active {
+    transform: translateY(-50%) scale(0.85);
+  }
+  i#left {
+    left: 10px;
+  }
+  i#right {
+    right: 10px;
+  }
+
+  .product-slider-wrapper {
+    //  max-width: 1100px;
+    width: 100%;
+    position: relative;
+  }
+
+  .product-slider-wrapper .product-slider {
+    display: grid;
+    grid-auto-flow: column;
+    // justify-content: center;
+    // grid-auto-columns: calc((100% / 4) - 0px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    //  gap: 10px;
+    border-radius: 0px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    // width: 85vw;
+    margin: auto;
+  }
+
+  .product-slider::-webkit-scrollbar {
+    display: none;
+  }
+  .product-slider.no-transition {
+    scroll-behavior: auto;
+  }
+  .product-slider.dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+  // .product-slider.dragging .card {
+  //   cursor: grab;
+  //   user-select: none;
+  // }
+  // .product-slider :where(.card, .img) {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
+  // .product-slider .card {
+  //   scroll-snap-align: start;
+  //   height: 342px;
+  //   list-style: none;
+  //   background: #fff;
+  //   cursor: pointer;
+  //   padding-bottom: 15px;
+  //   flex-direction: column;
+  //   border-radius: 8px;
+  // }
+  // .product-slider .card .img {
+  //   background: #8B53FF;
+  //   height: 148px;
+  //   width: 148px;
+  //   border-radius: 50%;
+  // }
+  //   .card .img img {
+  //     width: 140px;
+  //     height: 140px;
+  //     border-radius: 50%;
+  //     object-fit: cover;
+  //     border: 4px solid #fff;
+  //   }
+  //   .product-slider .card h2 {
+  //     font-weight: 500;
+  //     font-size: 1.56rem;
+  //     margin: 30px 0 5px;
+  //   }
+  //   .product-slider .card span {
+  //     color: #6A6D78;
+  //     font-size: 1.31rem;
+  //   }
+
+  // @media screen and (max-width: 1350px) {
+  //   .product-slider-wrapper .product-slider {
+  //     grid-auto-columns: calc((100% / 3) - 2%);
+  //   }
+  // }
+
+  // @media screen and (max-width: 1042px) {
+  //   .product-slider-wrapper .product-slider {
+  //     grid-auto-columns: calc((100% / 2) - 12%);
+
+  //   }
+  //   .product-slider-wrapper i#left:first-child{
+  //     left: -45px;
+  //   }
+  //   .product-slider-wrapper i#right:last-child{
+  //     right: -45px;
+  //   }
+  // }
+
+  // @media screen and (max-width: 850px) {
+  //   .product-slider-wrapper .product-slider {
+  //     grid-auto-columns: calc((100% / 2) - 5%);
+  //   }
+
+  // }
+
+  // @media screen and (max-width: 700px) {
+  //   .product-slider-wrapper .product-slider {
+  //     grid-auto-columns: 100%;
+  //     max-width: 350px;
+  //   }
+  // }
+
+  @media screen and (max-width: 576px) {
+    i#left,
+    i#right {
+      bottom: -70px;
+      top: auto;
+    }
+
+    .product-slider-wrapper {
+      width: 95%;
+    }
+  }
+
+  
+  @media screen and (max-width: 426px) {
+    .card {
+      width: 75vw !important; 
+      margin-left: 10 !important;
+    }
+
+  }
+}

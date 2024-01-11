@@ -1,0 +1,10 @@
+<app-top-header
+  [islamicDate]="islamicdateObj"
+  [languageList]="language"
+  [currencyList]="currency"
+  [countryList]="country"
+  (selectedCountry)="getBankDetail($event)"
+></app-top-header>
+<app-navigation-header></app-navigation-header>
+<router-outlet></router-outlet>
+<app-footer [bankDetail]="bankDetail"></app-footer>

@@ -1,0 +1,9 @@
+<ng-container [ngSwitch]="layout">
+  <!-- Alternativerly use the main layout as the default switch case -->
+  <app-main-layout  *ngSwitchCase="Layouts.Main"></app-main-layout>
+  <app-centred-content-layout
+    *ngSwitchCase="Layouts.centredContent"
+  ></app-centred-content-layout>
+</ng-container>
+<app-toast></app-toast>
+<app-custom-loader></app-custom-loader>

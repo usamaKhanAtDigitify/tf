@@ -1,0 +1,85 @@
+.simple-banner{ 
+    height: auto;
+    max-height: 76vh;
+    overflow: hidden;
+    position: relative;
+
+    iframe{
+        height: 76vh;
+        width: 100%;
+    }
+
+    .banner-body{ 
+        
+        .media {
+            overflow: hidden;
+            img {
+            width: 100%;
+            height: 100%;
+            filter: brightness(0.8);
+            object-fit: fill;
+            }
+        
+            video {
+            width: 100%;
+            height: 100%;
+            filter: brightness(0.8);
+            object-fit: fill;
+            }
+        }
+    
+        .content {
+            position: absolute;
+            
+            top: 50%;
+            left: 0;
+            right: 0;
+            margin: auto;
+            text-align: center;
+            transform: translateY( -30%);
+        
+            p:first-child {
+            font-family: Gotcha;
+            font-size: 9vw;
+            line-height: 9vw;
+            letter-spacing: 6px;
+            }
+        
+            a {
+            background-color: #ee135a;
+            cursor: pointer !important;
+            }
+        }
+    
+    .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        width: 150px;
+        background-color: rgb(217 217 217 / 25%);
+        border-radius: 50%;
+        height: 150px;
+    
+            a {
+            font-size: 125px;
+            color: #d9d9d9;
+            cursor: pointer;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .banner-body{ 
+    
+        .content {
+            transform: translate(-35%, -30%) !important;
+
+            p:last-child{
+                width: 100% !important;
+            }
+        }
+        }
+}

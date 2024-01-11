@@ -1,0 +1,21 @@
+<div class="d-flex flex-column align-items-center p-4">
+    <div class="main-heading font-gotcha text-blue letter-spacing-1">
+        {{ data.mainHeading }}
+    </div>
+    <div class="sub-heading text-blue letter-spacing-1">
+        {{ data.subHeading }}
+    </div>
+    <div class="d-flex justify-content-center text-blue mt-5 flex-wrap">
+        <div class="circle d-flex flex-column align-items-center mx-5" *ngFor="let object of data.Icons">
+            <div class="circle-icon bg-blue d-flex align-items-center justify-content-center">
+                <img src="{{object.icon}}">
+            </div>
+            <div class="icon-title letter-spacing-1 mt-2">
+                {{object.title}}
+            </div>
+            <div class="icon-description letter-spacing-1 text-center">
+                {{object.description}}
+            </div>
+        </div>
+    </div>
+</div>

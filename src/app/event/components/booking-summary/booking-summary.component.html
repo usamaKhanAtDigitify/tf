@@ -1,0 +1,156 @@
+<div class="bg-blue-light text-blue letter-spacing-1 d-flex flex-column py-4 pb-5">
+    <p class="second-title mb-1 text-center ">Booking Summary</p>
+    <p class="description text-center d-sm-block d-none">You’re one step away from an memorable event.
+       <br> Here’s a summary of what you’re booking:</p>
+    <div class="w-50 m-auto mt-4 d-sm-block d-none">
+        <div class="row">
+            <div class="col-4">
+                <p class="description ">{{bookTicketObj?.category}}</p>
+            </div>
+            <div class="col-4">
+                <p class="description ">Date: {{bookTicketObj?.dates}}</p>
+            </div>
+            <div class="col-4">
+                <p class="description ">Location: {{bookTicketObj?.location}}</p>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-4" *ngFor="let ticket of bookTicketObj.tickets">
+                <p class="description">{{ticket.type | titlecase}}: x{{ticket.count}} <span class="float-end">${{ticket.total}}</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <p class="description">Subtotal: ${{this.bookTicketObj.subTotal}}</p>
+            </div>
+            <div class="col-4">
+                <p class="description">VAT: $0.00</p>
+            </div>
+            <div class="col-4">
+                <p class="description">Total: ${{this.bookTicketObj.subTotal}}</p>
+            </div>
+        </div>
+    </div>
+    <p class="description text-center d-sm-none d-block w-75 m-auto">You’re one step away from an memorable event. Here’s a summary of what you’re booking:</p>
+    <p class="description text-center mb-0 mt-2">UK Comedy Tour</p>
+
+     <div class="px-2 mt-2 d-sm-none d-block">
+         <div class="row">
+            <div class="col-6">
+                <p class="description ">Date</p>
+            </div>
+            <div class="col-6">
+                <p class="description float-end">{{bookTicketObj?.dates}}</p>
+            </div>
+            </div>
+            <div class="row" *ngFor="let ticket of bookTicketObj.tickets">
+                <div class="col-6" >
+                    <p class="description">{{ticket.type | titlecase}}: x{{ticket.count}}</p>
+                </div>
+                <div class="col-6">
+                   <p class="description float-end">{{ticket.total}}</p>
+                </div>
+            </div>
+            <div class="row">
+             <div class="col-6">
+                 <p class="description">Subtotal</p>
+             </div>
+             <div class="col-6">
+                <p class="description float-end">{{this.bookTicketObj.subTotal}}</p>
+             </div>
+             <div class="col-6">
+                <p class="description">Total</p>
+            </div>
+            <div class="col-6">
+               <p class="description float-end">{{this.bookTicketObj.subTotal}}</p>
+            </div>
+         </div>
+     </div>
+    <div class="d-flex flex-column mt-4 mb-5 payment-method">
+        <p class="text-blue description fw-bold mb-1 text-center letter-spacing-1 fs-5">Payment Method</p>
+        <div class="d-flex justify-content-around flex-wrap mx-sm-0 mx-3">
+            <button type="button"
+                class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2 flex-sm-grow-0 flex-grow-1"
+                (click)="onSelectPaymentMethod('paypal')">
+                <i class="bi bi-paypal text-white"></i>
+                PayPal
+            </button>
+            <button type="button"
+                class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2 flex-sm-grow-0 flex-grow-1"
+                (click)="onSelectPaymentMethod('stripe')">
+                <i class="bi bi-google text-white"></i>
+                Google Pay
+            </button>
+            <button type="button"
+                class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2 flex-sm-grow-0 flex-grow-1"
+                (click)="onSelectPaymentMethod('stripe')">
+                <i class="bi bi-apple text-white"></i>
+                Apple
+            </button>
+            <button type="button"
+                class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2 flex-sm-grow-0 flex-grow-1"
+                (click)="onSelectPaymentMethod('stripe')">
+                <img src="assets/images/mastercard.png" class="" />
+                Pay By Card
+            </button>
+        </div>
+    </div>
+    <!-- <div class="m-auto mb-5">
+    <div class="row">
+        <div class="col-6">
+            <p class="description ">Date</p>
+        </div>
+        <div class="col-6">
+            <p class="description ">01/02/24</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="description ">Adults: X2</p>
+        </div>
+        <div class="col-6">
+            <p class="description text-end  ">$25.98</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="description ">Children: X2</p>
+        </div>
+        <div class="col-6">
+            <p class="description ms-5">$15.98</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="description ">Under 6</p>
+        </div>
+        <div class="col-6">
+            <p class="description ms-5">Free</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="description me-5">Subtotal</p>
+        </div>
+        <div class="col-6">
+            <p class="description ms-5">$41.96</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="description me-5">VAT</p>
+        </div>
+        <div class="col-6">
+            <p class="description ms-5">$4.00</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p class="description me-5">Total</p>
+        </div>
+        <div class="col-6   ">
+            <p class="description ms-5">$45.96</p>
+        </div>
+    </div>
+</div> -->
+</div>

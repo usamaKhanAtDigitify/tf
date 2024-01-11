@@ -1,0 +1,25 @@
+.circle {
+  width: 144px;
+  height: 144px;
+}
+span.dot {
+  width: 18px;
+  height: 17px;
+  background-color: #ee135a;
+  border-radius: 50%;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  font-size: medium;
+}
+
+
+@media screen and (max-width: 576px) {
+  .circle {
+    width: 100px;
+    height: 100px;  
+    img{
+      width: 48px;
+    }
+  }
+}

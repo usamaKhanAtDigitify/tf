@@ -1,0 +1,47 @@
+.see-more {
+  display: inline-flex;
+  padding: 10px 25px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 24px;
+  background: #ee135a;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+img {
+  height: 250px;
+}
+.card-body {
+  text-align: center;
+  // width: 400px;
+  min-height: 209px;
+  background: #00aeef;
+}
+.card-title {
+  color: #1e3271;
+  text-align: center;
+  font-family: Hind;
+  font-size: 25px !important;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+}
+.card-text {
+  color: #fff;
+  text-align: center;
+  font-family: Branding;
+  font-size: 18px;
+  font-style: normal;
+  // font-weight: 600;
+  line-height: 18px;
+  height: 54px;
+}
+
+@media (max-width: 800px) {
+  .mx-30 {
+    margin-bottom: 30px;
+  }
+}

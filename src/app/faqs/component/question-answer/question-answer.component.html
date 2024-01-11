@@ -1,0 +1,19 @@
+<div class="bg-light-blue ">
+    <div class="max-width-1440 m-auto mx-sm-5 p-sm-5 p-2">
+        <p class=" second-title text-blue text-center"> FAQ's</p>
+<div class="accordion " id="accordionExample">
+    <div class="accordion-item border-navy" *ngFor="let question of questionArrays; index as i">
+      <h2 class="accordion-header " id="headingOne">
+        <button class="accordion-button collapsed bg-light-blue text-blue fw-bold letter-spacing-1" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="('#collapse' + i)" aria-expanded="true" [attr.aria-controls]="('collapse' + i)">
+          {{i + 1 }}. {{ question.question}}
+        </button>
+      </h2>
+      <div id="{{'collapse' +i}}" class="accordion-collapse collapse" aria-labelledby="headingOne" >
+        <div class="accordion-body">
+        {{question.answer}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

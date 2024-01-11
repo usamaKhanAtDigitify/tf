@@ -1,0 +1,33 @@
+.person-image{
+    max-width: 600px;
+    max-height: 500px;
+}
+
+.statement-title{
+    font-size: 30px;
+    position: relative;
+}
+
+.statement-description{
+    font-size: 20px;
+}
+
+// .statement-title:before {
+//     content:  "“"  ;
+//     left: 0px;
+//    }
+   
+//    .statement-title:after {
+//     content: "”";
+//     right: 0px;
+//    }
+   
+//    .statement-title:before,
+//    .statement-title:after {
+//     display:inline;
+//     font-size: 100px;
+//     color: #1E3271;
+//     padding: 0;
+//     position: absolute;
+//     top: -30px;
+//     }

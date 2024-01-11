@@ -1,0 +1,19 @@
+<div class="max-width-1440 mt-5 m-auto">
+    <div class="row align-items-center m-0">
+        <div class="col-md-6 col-12 order-md-1 order-2">
+            <div class="text-center text-blue mt-sm-0 mt-2">
+            <p class="statement-title letter-spacing-1">
+                {{ceoMessageObj?.title}}
+            </p>
+            <p class="statement-description letter-spacing-1">
+                {{ceoMessageObj?.description}}
+            </p>
+        </div>
+        </div>
+        <div class="col-md-6 col-12 px-0 order-md-2 order-1">
+            <div class="person-image float-md-end">
+                <img src="{{ceoMessageObj.image?.data?.attributes?.url}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>

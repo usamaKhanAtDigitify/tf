@@ -1,0 +1,52 @@
+<div class="d-flex flex-column fw-bold text-blue p-5">
+    <div class="title text-center">
+        <p>You're Going to the {{bookingSuccessObj?.eventName}}!</p>
+    </div>
+    <div class="sub-title text-center">
+       <p> Your booking has been confirmed. Please see your ticket details which have also been emailed to you.</p>
+    </div>
+    <div class="title text-center">
+        <p class="mb-1">Booking Details</p>
+    </div>
+    <div class="my-3 border border-navy border-bottom border-2"></div>
+    <div class="title text-center">
+        <p>{{bookingSuccessObj?.eventName}}</p>
+    </div>
+
+    <div class="row m-0">
+        <div class="col-lg-4 offset-lg-2 col-sm-6 col-12 text-sm-left text-center">
+            <p class="title mb-0">Date: <span class="fw-normal">{{bookingSuccessObj?.date}}</span></p>
+            <p class="title mb-0">Time: <span class="fw-normal">{{bookingSuccessObj?.timeFrom}} - {{bookingSuccessObj?.timeTo}}</span></p>
+            <p class="title mb-0">Location:</p>
+            <p class="title fw-normal">{{bookingSuccessObj?.location}}</p>
+            
+            <p class="title mb-0">Tickets: <span class="fw-normal">{{totalSumHandler((this.bookingSuccessObj?.adult ? bookingSuccessObj.adult : 0) ,(this.bookingSuccessObj?.child ? bookingSuccessObj.child : 0) , (this.bookingSuccessObj?.under6 ? bookingSuccessObj.under6 : 0))}}</span></p>
+            <p class="title mb-0">Adults: <span class="fw-normal">x{{bookingSuccessObj?.adult  ? bookingSuccessObj?.adult : 0}}</span></p>
+            <p class="title mb-0">Childern: <span class="fw-normal">x{{bookingSuccessObj?.child  ? bookingSuccessObj?.child : 0}}</span></p>
+            <p class="title mb-0">Under6: <span class="fw-normal">x{{bookingSuccessObj?.under6  ? bookingSuccessObj?.under6 : 0}}</span></p>
+            <p class="title text-red mb-0">Ticket number: {{bookingSuccessObj?.bookingId}}</p>
+        </div>
+    </div>
+    <div class="px-2 py-4 mb-4 bg-light-blue mt-4 border border-red border-2 rounded-2">
+    <div class="row m-0 align-items-end">
+        <div class="col-lg-8 col-12">
+            <p class="title mb-sm-0 mb-1 text-lg-start text-center">Congratulations!</p>
+            <p class="sub-title text-lg-start text-center mb-1">Get 10% off your next event booking or gift this discount code to a friend</p>
+        </div>
+        <div class="col-lg-2 col-12 ">
+            <div class=" d-flex flex-column align-items-center my-lg-0 my-3 ">
+            <span class="sub-title mb-0">Your Code:</span>
+            <button
+            type="button"
+            class="border-solid text-red description fw-bold letter-spacing-1 bg-transparent rounded-pill border-red border-4 py-3 px-5">
+            VIP2024
+          </button>
+        </div>
+        </div>
+        <div class="col-lg-2 col-12 text-center">
+            <img src="assets/images/gift-ticket.png">
+            <p class="sub-title  mb-0">Gift this code</p>
+        </div>
+    </div>
+</div>
+</div>

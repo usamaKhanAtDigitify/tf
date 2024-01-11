@@ -1,0 +1,72 @@
+.founder-intro {
+    height: 450px;
+    width: 25px;
+    position: absolute;
+    top: 15vh;
+    right: 0;
+    z-index: 11;
+    display: flex;
+    border-radius: 10px 0px 0px 10px;
+    //flex-direction: row;
+    //cursor: pointer;
+  
+    &.card-expanded {
+      width: 316px;
+  
+      i {
+        align-items: top;
+        margin-right: 10px;
+        font-weight: 700;
+        font-size: 30px;
+      }
+    }
+  
+    &.card-closed {
+      align-items: center;
+    }
+  
+    i {
+      font-size: 25px;
+      cursor: pointer;
+      -webkit-text-stroke: 1px;
+    }
+  
+    .founder-description {
+      height: 100%;
+      width: 100%;
+  
+      .user-img {
+        width: 120px;
+        height: 120px;
+        background-color: #0090c6;
+        overflow: hidden;
+      }
+  
+      .description-title,
+      .fonder-name {
+        font-size: 30px;
+        font-family: Gotcha;
+        letter-spacing: 2px;
+      }
+  
+      .fonder-name {
+        color: #1e3271;
+        top: -12px;
+        position: relative;
+      }
+  
+      .description-content {
+        width: 150px;
+        font-size: 18px;
+      }
+  
+      .read-story {
+        width: 125px;
+        border: 1px solid white;
+        border-radius: 50px;
+        padding: 8px 12px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+  }

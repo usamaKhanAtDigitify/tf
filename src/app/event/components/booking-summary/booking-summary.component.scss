@@ -1,0 +1,17 @@
+.payment-method{
+    width: 75%;
+    margin: auto;
+    button{
+        width: 191px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .payment-method{
+        width: 100%;
+        margin: auto;
+        button{
+            width: 100%;
+        }
+    }   
+  }

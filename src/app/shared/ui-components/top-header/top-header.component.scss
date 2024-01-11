@@ -1,0 +1,35 @@
+.top-header {
+  height: 50px;
+  width: 94%;
+  margin-left: 3rem;
+  padding-right: 1rem;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+li a img {
+  width: 36px;
+  height: 24px;
+}
+
+i {
+  -webkit-text-stroke: 1px;
+}
+
+a,
+i {
+  color: #1e3271 !important;
+  background-color: white;
+}
+
+.login-btn {
+  height: 40px;
+  border-radius: 5px;
+  border-color: #1e3271 !important;
+}
+
+li a {
+  font-family: Helvetica, sans-serif;
+}

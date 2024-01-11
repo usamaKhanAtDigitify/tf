@@ -1,0 +1,258 @@
+<div
+  class="d-flex justify-content-between top-navigation"
+  *ngIf="getScreenWidth > 991"
+>
+  <div class="image" [routerLink]="['/']">
+    <img src="../../../../assets/images/logo.png" />
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
+    <div class="">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-white menu-text"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Giving
+              <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-white menu-text"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Our Work
+              <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-white menu-text"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Get involved
+              <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">              
+              <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/events']">Events</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-white menu-text"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              About Us
+              <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/ali-banat']">Ali Banat Story</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/about']">About us</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/faqs']">FAQs</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle text-white menu-text"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              [routerLink]="['/contact']"
+            >
+              Contact
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              (click)="onclickCart()"
+              class="nav-link text-white position-relative"
+              href="javascript:void(0)"
+              ><i class="bi bi-cart3"></i>
+              <span
+                *ngIf="cartitem > 0"
+                class="cart-items-number position-absolute top-0 start-100 translate-middle bg-white rounded-pill text-center text-red fw-bold letter-spacing-1"
+                >{{ cartitem }}</span
+              >
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="py-3 border-4 border-top border-blue" *ngIf="getScreenWidth < 992">
+  <div class="accordion accordion-flush p-0" id="accordionFlushExample">
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseOne"
+          aria-expanded="false"
+          aria-controls="flush-collapseOne"
+        >
+          Giving
+        </button>
+      </p>
+      <div
+        id="flush-collapseOne"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <p class="text-blue fw-bold mb-1">Ali Banat Legacy</p>
+          <p class="text-blue fw-bold mb-1">Our Purpose</p>
+          <p class="text-blue fw-bold mb-1">Meet the team</p>
+          <p class="text-blue fw-bold mb-1">Our Social Channel</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseTwo"
+          aria-expanded="false"
+          aria-controls="flush-collapseTwo"
+        >
+          Our Work
+        </button>
+      </p>
+      <div
+        id="flush-collapseTwo"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <p class="text-blue fw-bold mb-1">GDPR</p>
+          <p class="text-blue fw-bold mb-1">Term of use</p>
+          <p class="text-blue fw-bold mb-1">Policies</p>
+          <p class="text-blue fw-bold mb-1">Opt out</p>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseThree"
+          aria-expanded="false"
+          aria-controls="flush-collapseThree"
+        >
+          Get involved
+        </button>
+      </p>
+      <div
+        id="flush-collapseThree"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/events']">Events</a>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseFour"
+          aria-expanded="false"
+          aria-controls="flush-collapseFour"
+        >
+          About us
+        </button>
+      </p>
+      <div
+        id="flush-collapseFour"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/ali-banat']">Ali Banat Story</a>
+          <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/about']">About us</a>
+          <a class="text-blue fw-bold d-block text-decoration-none" href="javascript:void(0)" [routerLink]="['/faqs']">FAQs</a>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border-0">
+      <p class="accordion-header">
+        <button
+          class="accordion-button collapsed w-auto m-auto fw-bold p-0 text-blue"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#flush-collapseFive"
+          aria-expanded="false"
+          aria-controls="flush-collapseFive"
+        >
+          Contact
+        </button>
+      </p>
+      <div
+        id="flush-collapseFive"
+        class="accordion-collapse collapse text-center"
+        data-bs-parent="#accordionFlushExample"
+      >
+        <div class="accordion-body">
+          <small class="text-blue mb-2">Barclays Bank</small>
+          <small class="text-blue mb-2">
+            Account-00887776
+            <br class="mb-0" />
+            Sort code: 21-23-44
+            <br class="mb-0" />
+            SWIFT: ABS234834003434
+          </small>
+          <small class="text-blue w-100">
+            Four our account details in other countries, please check our FAQs
+            or contact us.
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

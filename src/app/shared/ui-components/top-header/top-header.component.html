@@ -1,0 +1,249 @@
+<div
+  class="d-flex justify-content-between top-header"
+  *ngIf="getScreenWidth > 991"
+>
+  <div class="islamic-date fw-bold d-flex align-items-center">
+    {{
+      this.islamicDate.month +
+        "  " +
+        this.islamicDate.day +
+        ", " +
+        this.islamicDate.year
+    }}
+    AH
+  </div>
+  <nav class="navbar navbar-expand-lg d-flex align-items-center">
+    <div class="">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-baseline">
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)"><i class="bi bi-search"></i> </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle fw-bold text-uppercase"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ selectedLanguage }}
+              <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li *ngFor="let lang of languageList; index as i">
+                <a
+                  class="dropdown-item"
+                  href="javascript:void(0)"
+                  (click)="onSelectLanguage(lang.code)"
+                  >{{ lang.name }}</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img class="mx-1" [src]="imageURL" />
+              <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li *ngFor="let country of countryList; index as i"
+                (click)="
+                  selectCountry(country)
+                "
+              >
+                <a class="dropdown-item" href="javascript:void(0)">
+                  <img
+                    class="mx-1"
+                    src="{{country.attributes.flag.data.attributes.url}}"
+                  />
+                  {{country.attributes.name}}
+                  </a
+                >
+              </li>
+              
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle fw-bold text-uppercase"
+              href="javascript:void(0)"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ selectedCurrency }}
+              <i class="bi bi-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li *ngFor="let currency of currencyList; index as i">
+                <a
+                  class="dropdown-item"
+                  href="javascript:void(0)"
+                  (click)="onSelectCurrency(currency)"
+                  >{{
+                    currency.attributes.symbol + " " + currency.attributes.title
+                  }}</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link fw-bold border mt-1 login-btn" href="javascript:void(0)">
+              MY MATW <i class="bi bi-person-lock"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="navbar bg-body-tertiary p-2" *ngIf="getScreenWidth < 992">
+  <div class="image ms-2">
+    <img src="assets/images/dark-blue-logo.png" />
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar pt-0">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">MATW</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)"><i class="bi bi-search"></i> </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle fw-bold"
+                href="javascript:void(0)"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                ENG
+                <i class="bi bi-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="javascript:void(0)">AR</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)">FR</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img class="mx-1" [src]="imageURL" />
+                <i class="bi bi-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li
+                  (click)="
+                    selectCountry('../../../../assets/images/tn_uk-flag.gif')
+                  "
+                >
+                  <a class="dropdown-item" href="javascript:void(0)">
+                    <img
+                      class="mx-1"
+                      src="../../../../assets/images/tn_uk-flag.gif"
+                    />UK</a
+                  >
+                </li>
+                <li
+                  (click)="
+                    selectCountry('../../../../assets/images/tn_us-flag.gif')
+                  "
+                >
+                  <a class="dropdown-item" href="javascript:void(0)">
+                    <img
+                      class="mx-1"
+                      src="../../../../assets/images/tn_us-flag.gif"
+                    />US</a
+                  >
+                </li>
+                <li
+                  (click)="
+                    selectCountry('../../../../assets/images/tn_as-flag.gif')
+                  "
+                >
+                  <a class="dropdown-item" href="javascript:void(0)">
+                    <img
+                      class="mx-1"
+                      src="../../../../assets/images/tn_as-flag.gif"
+                    />AUS</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle fw-bold"
+                href="javascript:void(0)"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                &pound; GBP
+                <i class="bi bi-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="javascript:void(0)">Action</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link fw-bold mt-1 login-btn" href="javascript:void(0)">
+                MY MATW <i class="bi bi-person-lock"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)"><i class="bi bi-cart3"></i> </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

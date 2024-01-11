@@ -1,0 +1,504 @@
+<div class="">
+  <div class="card w-100 border-0 m-auto p-1 rounded-0 bg-blue-light">
+    <div class="d-flex flex-wrap">
+      <button
+        type="button"
+        class="btn fw-bold letter-spacing-1 rounded-0 flex-grow-1"
+        [ngClass]="{
+          'text-blue bg-white': userType == 'individual',
+          'text-blue': userType != 'individual'
+        }"
+        (click)="onSelectUserType('individual')"
+      >
+        Individual
+      </button>
+      <button
+        type="button"
+        class="btn fw-bold letter-spacing-1 rounded-0 flex-grow-1"
+        [ngClass]="{
+          'text-blue bg-white': userType == 'business',
+          'text-blue': userType != 'business'
+        }"
+        (click)="onSelectUserType('business')"
+      >
+        Business
+      </button>
+    </div>
+    <div class="fw-bold text-blue letter-spacing-1 mx-4 mt-3">
+      <p class="my-2">
+        {{
+          userType == "individual"
+            ? "We need your email address to send you receipts"
+            : "We need your business email and address to send you receipts"
+        }}
+      </p>
+    </div>
+    <form #emailForm="ngForm">
+      <div class="row mx-4 justify-content-between">
+        <div class="col-md-6 ps-0">
+          <div class="mb-3 w-100">
+            <label
+              for="email"
+              class="form-label mb-0 text-blue fw-bold letter-spacing-1"
+              >Email address</label
+            >
+            <input
+              class="form-control rounded-1"
+              type="email"
+              name="email"
+              id="email"
+              ngModel
+              #email="ngModel"
+              email
+              required
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              [ngClass]="{
+                'is-invalid': submitted && emailForm.controls['email'].invalid
+              }"
+            />
+            <div *ngIf="email.touched && email.invalid">
+              <div class="text-red" *ngIf="email.errors?.['required']">
+                Email is required
+              </div>
+              <div class="text-red" *ngIf="email.errors?.['pattern']">
+                Invalid email address.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 ps-0">
+          <div class="mb-3 w-100">
+            <label
+              for="confirmEmail"
+              class="form-label mb-0 text-blue fw-bold letter-spacing-1"
+              >Confirm Email address</label
+            >
+            <input
+              type="confirmEmail"
+              class="form-control rounded-1"
+              name="confirmEmail"
+              id="confirmEmail"
+              ngModel
+              #confirmEmail="ngModel"
+              (ngModelChange)="validateConfirmEmail(emailForm)"
+              required
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              [ngClass]="{
+                'is-invalid': submitted && emailForm.controls['confirmEmail'].invalid
+              }"
+            />
+            <div *ngIf="confirmEmail.touched && confirmEmail.invalid">
+              <div class="text-red" *ngIf="confirmEmail.errors?.['required']">
+                Confirm Email is required.
+              </div>
+              <div class="text-red" *ngIf="confirmEmail.errors?.['pattern']">
+                Invalid email address.
+              </div>
+              <div class="text-red" *ngIf="confirmEmail.errors?.['incorrect']">
+                Email do not match.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="d-flex flex-column my-3 gifted-section">
+    <p class="text-blue my-2 text-center letter-spacing-1 description">Gift Aid</p>
+    <p class="text-blue mb-2 text-center letter-spacing-1">
+      If you are a UK tax payer, the value of your donation can increase by 25% at no extra cost to you    </p>
+    <div class="position-relative d-flex text-center align-items-center justify-content-around text-white bg-blue-light tax-section">
+      <div class="amount-section d-flex align-items-center justify-content-center">{{selectedCurrency}}{{totalAmount}}</div>
+      <div class="amount-section d-flex align-items-center justify-content-center">+25%</div>
+      <div class="amount-section d-flex align-items-center justify-content-center">{{selectedCurrency}}{{taxedAmount}}</div>
+      <div class="position-absolute w-50 dashed-line"></div>
+    </div>
+  </div>
+
+
+  <div class="d-flex flex-column my-3 gifted-section">
+    <img src="assets/images/giftaid-icon.png" class="m-auto my-3" />
+    <p class="text-blue fw-bold my-2 letter-spacing-1">
+      Are you a UK taxpayer? Add an additional 25% for every £1 you donate for
+      free.
+    </p>
+    <div class="d-flex flex-row">
+      <input
+        class="form-check-input fs-4 mt-0 me-3 border-3"
+        type="checkbox"
+        (change)="onSelectGiftaid($event)"
+      />
+
+      <p class="text-blue fw-bold mb-1 letter-spacing-1">
+        Yes, I am a UK taxpayer. I would like UK for MATW Project to claim Gift
+        Aid on this donation, as well as any future donations and any donations
+        made to UK for UNHCR in the past four years. I understand that if I pay
+        less Income Tax and/or Capital Gains Tax than the amount of Gift Aid
+        claimed on all my donations in that tax year it is my responsibility to
+        pay any difference. I understand that UK for UNHCR will reclaim 25p of
+        tax on every £1 that I give. The Gift Aid claimed will be used to help
+        fund the whole of UK for UNHCR's work Please note we can only claim Gift
+        Aid on behalf.
+      </p>
+    </div>
+    <p class="text-blue fw-bold mb-1 letter-spacing-1 mt-4">
+      Please note we can only claim Gift Aid on behalf of individuals. If you
+      are paying in funds that you have raised from a fundraiser or a
+      collection,
+      <a href="javascript:void()" class="text-blue"
+        >please donate via our dedicated fundraising page.</a
+      >
+    </p>
+  </div>
+
+  <div class="my-3">
+    <p class="text-blue fw-bold mb-1 letter-spacing-1">
+      In order to maximize on your donation and claim gift aid on your donation,
+      we’ll need to take down some details:
+    </p>
+
+    <form
+      [formGroup]="paymentForm"
+      *ngIf="showForm"
+    >
+      <div class="row">
+        <div class="col-lg-6" *ngIf="fc['businessName']">
+          <ng-container *ngIf="fc['businessName']">
+            <div class="form-group mt-3">
+              <label
+                class="form-label fw-bold text-blue letter-spacing-1"
+                for="businessName"
+                >Business Name
+                <!-- <span [ngClass]="{ 'text-danger': submitted && fc['businessName'].invalid }">*</span> -->
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="businessName"
+                formControlName="businessName"
+                [ngClass]="{
+                  'is-invalid': submitted && fc['businessName'].invalid
+                }"
+              />
+              <div class="invalid-feedback">
+                <div *ngIf="fc['businessName'].hasError('minlength')">
+                  Business name must be at least {{ fc['businessName'].errors?.['minlength'].requiredLength }} characters.
+                </div>
+                <!-- <div *ngIf="fc['businessName'].hasError('minlength')">
+                  Business name cannot exceed {{ fc['businessName'].errors?.['minlength'].requiredLength }} characters.
+                </div> -->
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+
+        <div class="col-lg-6" *ngIf="fc['taxId']">
+          <ng-container *ngIf="fc['taxId']">
+            <div class="form-group mt-3">
+              <label
+                class="form-label fw-bold text-blue letter-spacing-1"
+                for="taxId"
+                >Tax ID
+                <!-- <span [ngClass]="{ 'text-danger': submitted && fc['taxId'].invalid }">*</span> -->
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="taxId"
+                formControlName="taxId"
+                [ngClass]="{ 'is-invalid': submitted && fc['taxId'].invalid }"
+              />
+              <div class="invalid-feedback">
+                <div *ngIf="fc['taxId'].hasError('minlength')">
+                 Tax id must be at least {{ fc['taxId'].errors?.['minlength'].requiredLength }} characters.
+                </div>
+                <!-- <div *ngIf="fc['taxId'].hasError('minlength')">
+                  Tax id cannot exceed {{ fc['taxId'].errors?.['minlength'].requiredLength }} characters.
+                </div> -->
+
+
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="firstName"
+              >First Name
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['firstName'].invalid }">*</span> -->
+            </label>
+            <input
+              type="text"
+              class="form-control h6"
+              id="firstName"
+              formControlName="firstName"
+              [ngClass]="{ 'is-invalid': submitted && fc['firstName'].invalid }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['firstName'].hasError('minlength')">
+                First name must be at least {{ fc['firstName'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['firstName'].hasError('minlength')">
+                First name cannot exceed {{ fc['firstName'].errors?.['minlength'].requiredLength }} characters.
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="lastName"
+              >Last Name
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['lastName'].invalid }">*</span> -->
+            </label>
+            <input
+              type="text"
+              class="form-control h6"
+              id="lastName"
+              formControlName="lastName"
+              [ngClass]="{ 'is-invalid': submitted && fc['lastName'].invalid }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['lastName'].hasError('minlength')">
+                Last name must be at least {{ fc['lastName'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['lastName'].hasError('minlength')">
+                Last name cannot exceed {{ fc['lastName'].errors?.['minlength'].requiredLength }} characters.
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-12">
+          <p class="text-blue fw-bold letter-spacing-1 mt-3 mb-0">
+            Not a UK Resident?
+            <a
+              href="javascript:void()"
+              class="text-red text-decoration-underline"
+              >Enter your address manaully</a
+            >
+          </p>
+        </div> -->
+        <div class="col-12">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="addressLine1"
+              >{{
+                userType === "business"
+                  ? "Business Address line 1"
+                  : "Address line 1"
+              }}
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['addressLine1'].invalid }">*</span> -->
+            </label>
+            <input
+              type="text"
+              class="form-control h6"
+              id="addressLine1"
+              formControlName="addressLine1"
+              [ngClass]="{
+                'is-invalid': submitted && fc['addressLine1'].invalid
+              }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['addressLine1'].hasError('minlength')">
+                Address line 1 must be at least {{ fc['addressLine1'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['addressLine1'].hasError('minlength')">
+                Address line 2 cannot exceed {{ fc['addressLine1'].errors?.['minlength'].requiredLength }} characters.
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-12">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="addressLine2"
+              >{{
+                userType === "business"
+                  ? "Business Address line 1"
+                  : "Address line 1"
+              }}
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['addressLine2'].invalid }">*</span> 
+            </label>
+            <input
+              type="text"
+              class="form-control h6"
+              id="addressLine2"
+              formControlName="addressLine2"
+              [ngClass]="{
+                'is-invalid': submitted && fc['addressLine2'].invalid
+              }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['addressLine2'].hasError('minlength')">
+                Address line 1 must be at least {{ fc['addressLine2'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['addressLine2'].hasError('minlength')">
+                Address line 2 cannot exceed {{ fc['addressLine2'].errors?.['minlength'].requiredLength }} characters.
+              </div> 
+
+
+            </div>
+          </div>
+        </div> -->
+        <div class="col-lg-6">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="city"
+            >
+              City
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['city'].invalid }">*</span> -->
+            </label>
+            <input
+              type="text"
+              class="form-control h6"
+              id="city"
+              formControlName="city"
+              [ngClass]="{ 'is-invalid': submitted && fc['city'].invalid }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['city'].hasError('minlength')">
+                city name must be at least {{ fc['city'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['city'].hasError('minlength')">
+                city name cannot exceed {{ fc['city'].errors?.['minlength'].requiredLength }} characters.
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="state"
+            >
+              State/Region
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['state'].invalid }">*</span> -->
+            </label>
+            <input
+              type="text"
+              class="form-control  h6"
+              id="state"
+              formControlName="state"
+              [ngClass]="{ 'is-invalid': submitted && fc['state'].invalid }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['state'].hasError('minlength')">
+                state name must be at least {{ fc['state'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['state'].hasError('minlength')">
+                state name cannot exceed {{ fc['state'].errors?.['minlength'].requiredLength }} characters.
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="zip"
+            >
+              Zip/Postal Code
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['zip'].invalid }">*</span> -->
+            </label>
+            <input
+              type="text"
+              class="form-control h6"
+              id="zip"
+              formControlName="zip"
+              [ngClass]="{ 'is-invalid': submitted && fc['zip'].invalid }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['zip'].hasError('minlength')">
+                zip code must be at least {{ fc['zip'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['zip'].hasError('minlength')">
+                zip code cannot exceed {{ fc['zip'].errors?.['minlength'].requiredLength }} characters.
+              </div> -->
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group mt-3">
+            <label
+              class="form-label fw-bold text-blue letter-spacing-1"
+              for="country"
+            >
+              Country
+              <!-- <span [ngClass]="{ 'text-danger': submitted && fc['country'].invalid }">*</span> -->
+            </label>
+            <input
+              type="text"
+              class="form-control h6"
+              id="country"
+              formControlName="country"
+              [ngClass]="{ 'is-invalid': submitted && fc['country'].invalid }"
+            />
+            <div class="invalid-feedback">
+              <div *ngIf="fc['country'].hasError('minlength')">
+                country name must be at least {{ fc['country'].errors?.['minlength'].requiredLength }} characters.
+              </div>
+              <!-- <div *ngIf="fc['country'].hasError('minlength')">
+                country name cannot exceed {{ fc['country'].errors?.['minlength'].requiredLength }} characters.
+              </div> -->
+              <div class="text-danger mt-3" *ngIf="submitted && paymentForm.invalid">
+                <p>* Please fill all required fields</p>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="d-flex flex-column mt-4 payment-method">
+    <p class="text-blue fw-bold mb-1 letter-spacing-1 fs-5">Payment Method</p>
+    <div class="d-flex justify-content-between flex-wrap">
+      <button
+        type="button"
+        class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2"
+        (click)="onSelectPaymentMethod('paypal')"
+       
+      >
+        <i class="bi bi-paypal text-white"></i>
+        PayPal
+      </button>
+      <button
+        type="button"
+        class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2"
+        (click)="onSelectPaymentMethod('stripe')"
+     
+      >
+        <i class="bi bi-google text-white"></i>
+        Google Pay
+      </button>
+      <button
+        type="button"
+        class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2"
+        (click)="onSelectPaymentMethod('stripe')"
+       
+      >
+        <i class="bi bi-apple text-white"></i>
+        Apple
+      </button>
+      <button
+        type="button"
+        class="bg-blue fs-5 text-white letter-spacing-1 fw-bold border-0 rounded-pill py-2 mt-2"
+        (click)="onSelectPaymentMethod('stripe')"
+       
+      >
+        <img src="assets/images/mastercard.png" class="" />
+        Pay By Card
+      </button>
+    </div>
+  </div>
+</div>

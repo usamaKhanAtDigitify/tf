@@ -1,0 +1,20 @@
+.title{
+    font-size: 32px;
+    line-height: 45px;
+}
+
+.sub-title{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 574px) {
+    .title{
+        font-size: 20px;
+        line-height: 25px;
+    }
+    
+    .sub-title{
+        font-size: 16px;
+    } 
+  }

@@ -1,0 +1,114 @@
+  .quick-donation {
+    //height: 100px;
+
+    &.top-not-fixed{
+      
+      display: none;
+      
+      .card{
+        max-width: 400px;
+      }
+    }
+  
+    &.fixedSection {
+
+      position: fixed;
+      height: auto;
+      /* width: 100vh; */
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    
+    &.top{
+      top: 0;
+      display: block;
+    }
+
+    &.bottom{
+      bottom: 0;
+      top: auto;
+      display: none;
+    }
+  
+    .progress-analytic {
+      width: 285px;
+      p {
+        //font-size: 20px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+  
+      .progress {
+        height: 11px;
+  
+        .progress-bar {
+          background-color: #ee135a;
+        }
+      }
+    }
+  
+    .quick-donation-form {
+      .amount-btn {
+        width: 64px;
+        height: 42px;
+        cursor: pointer;
+
+        &.dark-blue-section{
+            width: 103px;
+            height: 58px;
+            font-size: 20px;
+        }
+  
+        &.selected {
+          background-color: #ee135a;
+        }
+      }
+  
+      select {
+        height: 42px;
+   
+  
+        &.custom-select-box{
+          appearance: none;
+          background-image: url('/assets/images/chevron-down.svg');
+          background-repeat: no-repeat;
+          background-position: 87% 50%;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 880px) {
+    .quick-donation{
+
+      &.top-not-fixed{
+        display: block;
+      }
+    &.top{
+      display: none ;
+    }
+
+    &.bottom{
+      display: block ;
+    }
+    }
+  }
+  
+  @media screen and (max-width: 395px) {
+    .custom-col {
+      flex: 0 0 auto;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  
+    .p-small{
+      padding: .9rem!important;
+    }
+  
+    .quick-donation-form{
+      padding: 0.5rem !important;
+    }
+  }

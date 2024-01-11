@@ -1,0 +1,93 @@
+// custom
+
+.walkthrough-pagination {
+    position: absolute;
+    width: 100vw;
+    bottom: 0px;
+  }
+  
+  .walkthrough .walkthrough-body .media {
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      filter: brightness(0.8);
+    }
+  
+    video {
+      width: 100%;
+      height: 100%;
+      filter: brightness(0.8);
+      object-fit: fill;
+    }
+  }
+  
+  .walkthrough .walkthrough-body .content {
+    position: absolute;
+    width: 60%;
+    top: 50%;
+    left: 6rem;
+    color: white;
+    text-align: left;
+    transform: translate(0, -50%);
+  
+    :first-child {
+      font-family: Gotcha;
+      font-size: 9vw;
+      line-height: 9vw;
+      letter-spacing: 6px;
+    }
+  
+    :nth-child(2) {
+      font-weight: 500;
+      //font-size: 24px;
+    }
+  
+    a {
+      background-color: #ee135a;
+      cursor: pointer !important;
+    }
+  }
+  
+  .walkthrough .walkthrough-body .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 150px;
+    background-color: rgb(217 217 217 / 25%);
+    border-radius: 50%;
+    height: 150px;
+  
+    a {
+      font-size: 125px;
+      color: #d9d9d9;
+      cursor: pointer;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .walkthrough .walkthrough-body .content {
+      width: 100%;
+      left: 0;
+      top: 66%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  
+      p:first-child{
+        letter-spacing: 0;
+      }
+      p:nth-child(2){
+        font-size: 18px;
+      }
+    }
+  }
+  
+  
+  iframe{
+    height: inherit;
+    width: inherit;
+  }

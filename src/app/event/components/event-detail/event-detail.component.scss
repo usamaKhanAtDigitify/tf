@@ -1,0 +1,37 @@
+.stepper-form{
+    overflow: hidden;
+}
+
+  .form-step{
+        transition: transform 1.5s, opacity 1.5s;
+        transform: translateX(150%);
+        visibility: hidden;
+        height: 0;
+        opacity: 0;
+
+        &.show-form{
+            visibility: visible;
+            height: auto;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        &.moveLeft{
+            transform: translateX(-150%);        
+            }
+
+        &.moveRight{
+            transform: translateX(150%);
+            
+            }
+
+        // &:nth-child(2){
+        //     transform: translateX(0);
+        // }
+        
+        //  &:not(:nth-child(2)){
+        //    transform: translateX(150%);
+        //  }
+
+        
+}

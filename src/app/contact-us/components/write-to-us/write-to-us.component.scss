@@ -1,0 +1,39 @@
+.contact-tiles-content {
+    font-size: 30px;
+    font-family: Branding;
+    line-height: 32px;
+    word-wrap: break-word;
+
+    &.font-weight-700 {
+        font-weight: 700;
+    }
+
+    &.font-weight-400 {
+        font-weight: 400;
+    }
+
+    &.font-weight-600 {
+        font-weight: 600;
+    }
+
+    &.font-size-45 {
+        font-size: 45px;
+    }
+
+    &.font-size-20 {
+        font-size: 20px;
+    }
+
+    &.line-height-25 {
+        line-height: 25px;
+    }
+}
+
+
+.write-to-us-content {
+    color: white;
+    font-size: 20px;
+    font-family: Branding;
+    line-height: 25px;
+    word-wrap: break-word;
+}

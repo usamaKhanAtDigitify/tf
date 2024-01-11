@@ -1,0 +1,31 @@
+.impact-section {
+  background: rgba(2, 185, 255, 0.2);
+}
+
+
+a {
+  text-decoration: none;
+}
+
+.see-more {
+  color: #1e3271;
+  font-size: 20px;
+}
+
+.circle {
+  width: 144px;
+  height: 144px;
+  background-color: #00aeef;
+}
+
+
+
+@media screen and (max-width: 576px) {
+  .circle {
+    width: 100px;
+    height: 100px;  
+    img{
+      width: 48px;
+    }
+  }
+}

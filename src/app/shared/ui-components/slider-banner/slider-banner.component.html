@@ -1,0 +1,52 @@
+<div class="walkthrough show reveal">
+    <div class="walkthrough-body">
+      <ul class="screens animate">
+        <li
+          class="screen"
+          *ngFor="let banner of bannerObject.data; index as i"
+          [ngClass]="{ active: index === i }"
+        >
+          <div class="media"  *ngIf="banner.attributes.media.data.attributes.mime != 'video/mp4'">
+            <img
+              class="object-fit-fill"
+              src="{{
+                  banner.attributes.media.data.attributes.url
+              }}"
+            />
+            <div class="content">
+              <!-- <p class="m-0" *ngIf="banner.attributes.tittle">{{ banner.attributes.tittle }}</p> -->
+              <p class="" *ngIf="banner.attributes.istextContent == true">{{ banner.attributes.tagline }}</p>
+              <a class="btn btn-lg text-white text-center letter-spacing-1 rounded-pill description" *ngIf="banner.attributes.buttonContent==true">{{
+                banner.attributes.buttonText
+              }}</a>
+            </div>
+          </div>
+         
+          <div class='media'*ngIf="banner.attributes.media.data.attributes.mime =='video/mp4'" >
+           
+            <!-- <iframe src="https://youtube.com/embed/dzL6BLPAFBo?autoplay=0" >
+            </iframe> -->
+             <video #videoRef>
+              <source src="{{banner.attributes.media.data.attributes.url}}" type="video/mp4">
+              Your browser does not support HTML video.
+            </video> 
+             <div class="play-btn px-3">
+              <a  (click)="playVideo(videoRef)"><i class="bi " [className]="videoRef.paused ? mediaPlyaerBtnIcon : mediaPlyaerBtnIcon"></i></a>
+            </div> 
+          </div>
+
+
+
+        </li>
+      </ul>
+    </div>
+    <div class="walkthrough-pagination">
+      <a
+        class="dot"
+        *ngFor="let banner of bannerObject.data; index as i"
+        [ngClass]="{ active: index === i }"
+        (click)="showSlidder(i)"
+      ></a>
+    </div>
+  </div>
+  

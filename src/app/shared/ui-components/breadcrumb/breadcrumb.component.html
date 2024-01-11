@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center align-items-center py-2 text-white" 
+[ngClass]="{
+    'bg-red': componentInd === 'contact',
+    'bg-navy': componentInd === ''
+  }">
+    <img src="assets/images/home-icon.png">
+     <i class="bi bi-chevron-right mx-2"></i>
+     <span class="d-flex" *ngIf="componentInd === ''">
+      <p class="letter-spacing-1 mb-1">Page</p>
+      <i class="bi bi-chevron-right mx-2"></i>
+      <p class="letter-spacing-1 mb-1">Ali Banat</p>
+     </span>
+    <span *ngIf="componentInd === 'contact'">
+        <p class="letter-spacing-1 mb-1">Contact Us</p>
+    </span>
+   
+</div>

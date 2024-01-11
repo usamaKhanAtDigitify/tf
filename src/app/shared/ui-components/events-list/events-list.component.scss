@@ -1,0 +1,96 @@
+.event-list {
+  position: relative;
+
+  .filter-type {
+    cursor: pointer;
+  }
+
+  .card {
+    max-height: 430px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    width: 280px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+
+    .product-progress {
+      .progress {
+        height: 3px;
+        background-color: #ee13585b;
+
+        .progress-bar {
+          background-color: #ee135a;
+        }
+      }
+    }
+
+    .product-description {
+      //max-height: 80px;
+      // margin-bottom: 30px;
+
+      //p:first-child{
+      font-size: 12px;
+      max-height: 80px;
+      overflow-y: hidden;
+      //}
+
+      p:last-child {
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+    }
+
+    
+    .product-descriptions {
+      //max-height: 80px;
+      // margin-bottom: 30px;
+
+      //p:first-child{
+      font-size: 10px;
+      max-height: 80px;
+      overflow-y: hidden;
+      //}
+
+      p:last-child {
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+    }
+
+    img {
+      height: 150px;
+      border-radius: 10px 10px 0px 0px;
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .card-list{
+    width: 100vw;
+    overflow-x: auto;
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    .slider{
+      width: max-content;
+    }
+  }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .card-list::-webkit-scrollbar {
+      display: none;
+    }
+
+}

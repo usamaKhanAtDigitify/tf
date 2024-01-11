@@ -1,0 +1,37 @@
+.footer-navigation{
+    div{
+        flex: 1 1 0;
+    }
+}
+
+p.accordion-header button{
+    font-size: 20px;
+
+    &::after{
+        content: none;
+    }
+
+    &:not(.collapsed){
+        color: #00AEEF;
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .payment-icon{
+        img{
+            height: 55px;
+        }
+    }
+
+    .company-info{
+        margin-bottom: 4rem;
+    }
+  }
+
+  @media screen and (max-width: 396px) {
+    .company-info{
+        margin-bottom: 7rem;
+    }
+  }

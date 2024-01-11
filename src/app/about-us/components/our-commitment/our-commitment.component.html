@@ -1,0 +1,35 @@
+<div class="bg-light-blue d-flex flex-column align-items-center pb-5">
+    <p class="text-blue font-gotcha main-title letter-spacing-1 mb-0">{{ourCommitmentObj.title}}</p>
+    <div class="d-flex justify-content-between mb-4">
+        <div class="box position-relative text-center d-flex flex-column border-navy border border-4 rounded-4 me-4">
+            <div class="icon bg-blue  rounded-pill position-absolute top-50 start-0 translate-middle d-flex justify-content-center align-items-center">
+                <img src="{{ourCommitmentObj.item[0]?.image?.data?.attributes?.url}}">
+            </div>
+            <p class="text-light-blue description mb-0 ms-5">{{ourCommitmentObj.item[0].title}}</p>
+            <p class="text-blue letter-spacing-1 ps-5 ms-5 pe-2 text-start">{{ourCommitmentObj.item[0].description}}</p>
+        </div>
+        <div class="box position-relative text-center d-flex flex-column border-navy border border-4 rounded-4 ms-4">
+            <div class="icon bg-blue rounded-pill position-absolute top-50 start-100 translate-middle d-flex justify-content-center align-items-center">
+                <img src="{{ourCommitmentObj.item[1]?.image?.data?.attributes?.url}}">
+            </div>
+            <p class="text-light-blue description mb-0">{{ourCommitmentObj.item[1].title}}</p>
+            <p class="text-blue letter-spacing-1 pe-5 me-5 ps-2 text-end">{{ourCommitmentObj.item[1].description}}</p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-between mt-5">
+        <div class="box position-relative text-center d-flex flex-column border-navy border border-4 rounded-4 me-4">
+            <div class="icon bg-blue rounded-pill position-absolute top-50 start-0 translate-middle d-flex justify-content-center align-items-center">
+                <img src="{{ourCommitmentObj.item[2]?.image?.data?.attributes?.url}}">
+            </div>
+            <p class="text-light-blue description mb-0 ms-5">{{ourCommitmentObj.item[2].title}}</p>
+            <p class="text-blue letter-spacing-1 ps-5 ms-5 pe-2 text-start">{{ourCommitmentObj.item[2].description}}</p>
+        </div>
+        <div class="box position-relative text-center d-flex flex-column border-navy border border-4 rounded-4 ms-4">
+            <div class="icon bg-blue rounded-pill position-absolute top-50 start-100 translate-middle d-flex justify-content-center align-items-center">
+                <img src="{{ourCommitmentObj.item[3]?.image?.data?.attributes?.url}}">
+            </div>
+            <p class="text-light-blue description mb-0">{{ourCommitmentObj.item[3].title}}</p>
+            <p class="text-blue letter-spacing-1 pe-5 me-5 ps-2 text-end">{{ourCommitmentObj.item[3].description}}</p>
+        </div>
+    </div>
+</div>
